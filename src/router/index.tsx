@@ -1,10 +1,20 @@
-
 import * as React from "react";
-import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
-import routerConfig, { IRouter } from "./routerConfig";
+import {
+  HashRouter,
+  Route,
+  Switch,
+  Redirect,
+  BrowserRouter,
+} from "react-router-dom";
+import routerConfig, { IRouter } from "../config/router.config";
 
-
-// 循环路由
+/**
+ * @author aimmarc
+ * @filename router/index.tsx
+ * @date 2021-02-09
+ * @param routes
+ * @description 生成路由
+ */
 const mapRoutes = (routes: Array<IRouter>) =>
   routes.map((item: IRouter, index) => {
     let component;
@@ -18,20 +28,22 @@ const mapRoutes = (routes: Array<IRouter>) =>
     } else {
       component = item.component;
     }
+
     return !!item.redirect ? (
       <Route
+        exact
         path={item.path}
         render={() => <Redirect to={item.redirect} />}
         key={index}
       />
     ) : (
-        <Route
-          exact={!item.routes}
-          path={item.path}
-          component={component}
-          key={index}
-        />
-      );
+      <Route
+        exact={!item.routes}
+        path={item.path}
+        component={component}
+        key={index}
+      />
+    );
   });
 
 const BasicRoute = () => (

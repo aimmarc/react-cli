@@ -1,0 +1,21 @@
+.bread {
+  flex: 1;
+
+  :global {
+    .ant-breadcrumb-link,
+    .ant-breadcrumb-separator {
+      color: #e0e0e0;
+
+      & a {
+        color: #e0e0e0;
+
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+    .ant-breadcrumb > span:last-child a {
+      color: #fff;
+    }
+  }
+}

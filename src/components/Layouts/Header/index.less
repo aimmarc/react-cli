@@ -1,0 +1,48 @@
+.header {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  box-shadow: 0 0 10px #e0e0e0;
+  background-color: @primary-color;
+  overflow: hidden;
+  z-index: 9;
+
+  .menu {
+    line-height: 50px;
+    color: #fff;
+
+    .collapsed {
+      display: inline-block;
+      padding: 0 12px;
+      cursor: pointer;
+    }
+  }
+
+  .operate {
+    display: flex;
+    align-items: center;
+    padding-right: 24px;
+    color: #fff;
+
+    .iconButton {
+      display: inline-block;
+      padding: 0 6px;
+      height: 50px;
+      line-height: 50px;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    .user {
+      cursor: pointer;
+
+      span {
+        font-size: 12px;
+      }
+    }
+  }
+}

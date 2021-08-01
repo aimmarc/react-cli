@@ -1,31 +1,26 @@
-import React, { useCallback, useState, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "antd";
-import Child from "./components/Child";
-import usePureState from "../../utils/hooks/usePrueState";
-let cb: any;
+import { Link } from "react-router-dom";
+import api from "@/utils/request";
 
-const Index: React.FC = (props) => {
-  const [name, setName] = usePureState("");
-  console.log('outer', name);
+const Index: React.FC = () => {
+  const [num, setNum] = useState({ count: 0 });
 
-  useLayoutEffect(() => {
-    console.log(cb === getList);
-    getList();
-  }, [name])
-
-  const handleClick = () => {
-    cb = getList;
-    setName(Math.random() + '', getList)
-  }
-
-  const getList = () => {
-    console.log('getlist', name);
-  }
+  useEffect(() => {
+    api.post("/api/user/login");
+  }, []);
 
   return (
     <div>
-      {name}
-      <Button onClick={handleClick}>呵呵</Button>
+      {num.count}
+      <Button
+        onClick={() =>
+          setNum((state) => ({ ...state, count: state.count + 1 }))
+        }
+      >
+        +
+      </Button>
+      <Link to="/detail">detail</Link>
     </div>
   );
 };
