@@ -12,6 +12,7 @@ interface IProps {
     title?: string | React.ReactElement;
     subTitle?: string | React.ReactElement;
     goBack?: boolean;
+    extra?: React.ReactElement;
 }
 
 const PageWrapper: React.FC<IProps> = (props: IProps): React.ReactElement => {
@@ -25,8 +26,14 @@ const PageWrapper: React.FC<IProps> = (props: IProps): React.ReactElement => {
                 backgroundColor: props.bg ? "#fff" : "",
             }}
         >
-            {props.custom ? props.children : (
-                <PageHeader title={props.title} subTitle={props.subTitle}>
+            {props.custom ? (
+                props.children
+            ) : (
+                <PageHeader
+                    title={props.title}
+                    subTitle={props.subTitle}
+                    extra={props.extra}
+                >
                     <Content>{props.children}</Content>
                 </PageHeader>
             )}
