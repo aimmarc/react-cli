@@ -39,8 +39,8 @@ const Bread: React.FC = (): React.ReactElement => {
           };
           transparent(parent);
           breads.push(...ps.reverse());
-          parent && breads.push(parent);
-          breads.push({
+          parent && parent.name && breads.push(parent);
+          row.name && breads.push({
             name: row.name,
             path: row.path,
             component: row.component,

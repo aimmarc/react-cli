@@ -5,5 +5,6 @@ export default {
   menuWidth: 272,
   showTabs: false,
   index: '/dashboard/analysis',
-  notTabs: ['/user/login']
+  notTabs: ['/user/login'],
+  routerMode: 'hash' // history
 };
