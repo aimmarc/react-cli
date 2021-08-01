@@ -12,7 +12,7 @@ const MainLayout: React.FC<IProps> = (props: IProps): React.ReactElement => {
   return (
     <div
       className={styles.bg}
-      style={{ paddingLeft: props.collapsed ? 78 + 15 : config.menuWidth + 15 }}
+      style={{ paddingLeft: props.collapsed ? 78 + 8 : config.menuWidth + 8 }}
     >
       {props.children}
     </div>

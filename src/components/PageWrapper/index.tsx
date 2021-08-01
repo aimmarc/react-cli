@@ -12,7 +12,7 @@ const PageWrapper: React.FC<IProps> = (props: IProps): React.ReactElement => {
     <div
       className={style.pageWrapper}
       style={{
-        minHeight: props.fit ? "calc(100vh - 116px)" : "auto",
+        minHeight: props.fit ? "calc(100vh - 104px)" : "auto",
         backgroundColor: props.bg ? "#fff" : "",
       }}
     >

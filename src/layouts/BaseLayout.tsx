@@ -22,7 +22,7 @@ const BaseLayout: React.FC<{}> = (props: any): React.ReactElement => {
   };
 
   const onLogout = () => {
-    history.replace("/user/login");
+    history.replace(`/user/login?redirectUrl=${location.href}`);
   };
 
   return (

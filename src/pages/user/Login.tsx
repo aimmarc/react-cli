@@ -5,6 +5,7 @@ import Logo from "./Logo";
 import useRequest from "@umijs/use-request";
 import { useHistory } from "react-router";
 import { userService } from "@/services";
+import { getQueryVariable } from "@/utils/common";
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 16 },
@@ -23,6 +24,12 @@ const Login: React.FC = (): React.ReactElement => {
     manual: true,
     onSuccess: (ret) => {
       if (ret.data.code === 0) {
+        const redirectUrl = getQueryVariable('redirectUrl');
+        
+        if (redirectUrl) {
+          location.href = redirectUrl;
+          return;
+        }
         history.replace("/");
       } else {
         message.error(ret.data.message);
