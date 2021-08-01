@@ -5,7 +5,6 @@ import { inject, observer } from "mobx-react";
 import { useHistory } from "react-router";
 import { getMenuName, getMenuRoute } from "@/utils/resolveMenuData";
 import { IconFont } from "@/components";
-import { CloseOutlined } from "@ant-design/icons";
 import { Tabs } from "antd";
 const { TabPane } = Tabs;
 
