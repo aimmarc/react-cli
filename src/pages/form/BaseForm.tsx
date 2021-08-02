@@ -8,8 +8,10 @@ import {
     Button,
     Radio,
     Mentions,
+    Tooltip,
 } from "antd";
 import { FormInstance } from "antd/lib/form";
+import { QuestionCircleOutlined } from "@ant-design/icons";
 
 class BaseForm extends React.PureComponent<{}> {
     state = {
@@ -27,6 +29,18 @@ class BaseForm extends React.PureComponent<{}> {
     };
 
     render() {
+        const customLabel = (
+            <div>
+                客户
+                <span style={{ color: "#999" }}>
+                    （选填）
+                    <Tooltip placement="top" title="目标的服务对象">
+                        <QuestionCircleOutlined />
+                    </Tooltip>
+                </span>
+            </div>
+        );
+
         return (
             <PageWrapper title="基础表单" bg fit>
                 <Form
@@ -66,7 +80,7 @@ class BaseForm extends React.PureComponent<{}> {
                     >
                         <Input.TextArea rows={3} placeholder="请输入衡量标准" />
                     </Form.Item>
-                    <Form.Item label="客户（选填）" name="customer">
+                    <Form.Item label={customLabel} name="customer">
                         <Mentions>
                             <Mentions.Option value="afc163">
                                 afc163
@@ -79,7 +93,15 @@ class BaseForm extends React.PureComponent<{}> {
                             </Mentions.Option>
                         </Mentions>
                     </Form.Item>
-                    <Form.Item label="邀评人（选填）" name="comments">
+                    <Form.Item
+                        label={
+                            <div>
+                                邀评人
+                                <span style={{ color: "#999" }}>（选填）</span>
+                            </div>
+                        }
+                        name="comments"
+                    >
                         <Mentions>
                             <Mentions.Option value="afc163">
                                 afc163
@@ -98,6 +120,7 @@ class BaseForm extends React.PureComponent<{}> {
                             precision={0}
                             formatter={(value) => `${value}%`}
                             parser={(value: any) => value.replace("%", "")}
+                            min={0}
                         />
                     </Form.Item>
                     <Form.Item label="目标公开" name="public">

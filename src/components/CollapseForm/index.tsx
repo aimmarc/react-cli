@@ -9,6 +9,7 @@ export interface TCollapseFormProps {
     extra?: React.ReactElement | string;
     onFinish?: (event: any) => void;
     onReset?: () => void;
+    loading?: boolean;
 }
 
 const formItemLayout = {
@@ -69,18 +70,19 @@ const CollapseForm: React.FC<TCollapseFormProps> = (
             <Row>{getFields(children, span, expand)}</Row>
             <div className={styles.btnBar}>
                 <Button onClick={() => { form.resetFields(); props.onReset && props.onReset() }}>重置</Button>
-                <Button type="primary" htmlType="submit">
+                <Button type="primary" htmlType="submit" loading={props.loading}>
                     查询
                 </Button>
                 {props.extra}
-                <a
+                <Button
                     onClick={() => {
                         setExpand(!expand);
                     }}
+                    type="link"
                 >
                     {expand ? <UpOutlined /> : <DownOutlined />}{" "}
                     {expand ? "收起" : "展开"}
-                </a>
+                </Button>
             </div>
         </Form>
     );

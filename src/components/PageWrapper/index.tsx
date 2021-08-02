@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./index.less";
 import { useHistory } from "react-router-dom";
-import { PageHeader, Layout } from "antd";
+import { PageHeader, Layout, BackTop } from "antd";
 const { Content } = Layout;
 
 interface IProps {
@@ -37,6 +37,7 @@ const PageWrapper: React.FC<IProps> = (props: IProps): React.ReactElement => {
                     <Content>{props.children}</Content>
                 </PageHeader>
             )}
+            <BackTop />
         </div>
     );
 };

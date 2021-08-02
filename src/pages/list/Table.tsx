@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { PageWrapper } from "@/components";
-import { Input, Form, DatePicker, Button, Table } from "antd";
+import { Input, Form, DatePicker, Button, Table, Badge, message } from "antd";
 import { CollapseForm } from "@/components";
 import { injectModel } from "@/models";
+import EditModal from "./components/EditModal";
 
 const FormItem = Form.Item;
 
@@ -14,22 +15,34 @@ class TableList extends React.PureComponent<{}> {
         },
         {
             title: "描述",
-            dataIndex: "title",
+            dataIndex: "desc",
         },
         {
             title: "服务调用次数",
-            dataIndex: "title",
+            dataIndex: "temp",
         },
         {
             title: "状态",
-            dataIndex: "title",
+            dataIndex: "status",
+            render: (text: number) => (
+                <Badge
+                    text={this.status[text].label}
+                    status={this.status[text].status}
+                />
+            ),
         },
         {
             title: "上次调度时间",
-            dataIndex: "title",
+            dataIndex: "lastDate",
         },
         {
             title: "操作",
+            render: () => (
+                <React.Fragment>
+                    <Button type="link">配置</Button>
+                    <Button type="link">订阅报警</Button>
+                </React.Fragment>
+            ),
         },
     ];
     state = {
@@ -38,10 +51,17 @@ class TableList extends React.PureComponent<{}> {
             list: [],
         },
         loading: false,
+        visible: false,
     };
     queryParams = {
         page: 1,
         pageSize: 10,
+    };
+    status: any = {
+        0: { label: "异常", status: "error" },
+        1: { label: "已上线", status: "success" },
+        2: { label: "运行中", status: "processing" },
+        3: { label: "已关闭", status: "default" },
     };
 
     componentDidMount() {
@@ -96,14 +116,38 @@ class TableList extends React.PureComponent<{}> {
         this.getTableData();
     };
 
+    handleCreate = () => {
+        this.setState({
+            visible: true,
+        });
+    };
+
+    handleCancel = () => {
+        this.setState({
+            visible: false,
+        });
+    };
+
+    handleOk = () => {
+        this.setState({ visible: false });
+        message.success("规则添加成功");
+        this.queryParams.page = 1;
+        this.getTableData();
+    };
+
     render() {
-        const { tableData, loading } = this.state;
+        const { tableData, loading, visible } = this.state;
 
         return (
             <PageWrapper title="查询表格" fit bg>
                 <CollapseForm
-                    extra={<Button>新增</Button>}
+                    extra={
+                        <Button type="primary" onClick={this.handleCreate}>
+                            新增
+                        </Button>
+                    }
                     onFinish={this.search}
+                    loading={loading}
                 >
                     <FormItem label="规则名称" name="title">
                         <Input />
@@ -118,7 +162,7 @@ class TableList extends React.PureComponent<{}> {
                         <Input />
                     </FormItem>
                     <FormItem label="上次调度时间">
-                        <DatePicker style={{ width: '100%' }} />
+                        <DatePicker style={{ width: "100%" }} />
                     </FormItem>
                 </CollapseForm>
                 <Table
@@ -131,7 +175,13 @@ class TableList extends React.PureComponent<{}> {
                     }}
                     rowKey="id"
                     loading={loading}
+                    size="middle"
                 ></Table>
+                <EditModal
+                    visible={visible}
+                    onCancel={this.handleCancel}
+                    onOk={this.handleOk}
+                />
             </PageWrapper>
         );
     }

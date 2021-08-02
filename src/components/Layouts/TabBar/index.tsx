@@ -88,9 +88,8 @@ const TabBar: React.FC<ITabBarProps> = (props): React.ReactElement => {
         <div
             className={style.tabbarWrap}
             style={{
-                width: `calc(100% - ${
-                    app.collapsed ? 78 : config.menuWidth
-                }px)`,
+                width: `calc(100% - ${app.collapsed ? 78 : config.menuWidth
+                    }px)`,
                 left: app.collapsed ? 79 : config.menuWidth,
             }}
         >
@@ -105,7 +104,7 @@ const TabBar: React.FC<ITabBarProps> = (props): React.ReactElement => {
                     <TabPane
                         tab={
                             <div>
-                                <IconFont type={item?.icon || "icon-file"} />
+                                <IconFont type={index === 0 ? 'icon-home' : item?.icon || "icon-file"} />
                                 {item.title}
                             </div>
                         }

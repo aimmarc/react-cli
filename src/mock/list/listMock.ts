@@ -14,13 +14,13 @@ class ListMock extends BaseMock {
                 "id|+1": 10000000,
                 "temp|100-5999": 1,
                 "title|1-3": "标题",
-                origin: "工单工厂",
-                "status|1-5": 1,
-                statusText: () => {
-                    return Mock.Random.csentence(0, 8);
+                "status|0-3": 1,
+                lastDate: () => {
+                    return Mock.Random.time('yyyy-MM-dd HH:mm:ss');
                 },
-                supporter: "@cname",
-                creator: "@cname",
+                desc: () => {
+                    return Mock.Random.csentence(0, 16);
+                },
                 date: "@now",
             },
         ];
