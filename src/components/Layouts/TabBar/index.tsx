@@ -25,9 +25,7 @@ export interface ITabBarProps {
  * @param props
  * @returns
  */
-const TabBar: React.FC<ITabBarProps> = (
-    props: ITabBarProps
-): React.ReactElement => {
+const TabBar: React.FC<ITabBarProps> = (props): React.ReactElement => {
     const { app } = props;
     const history = useHistory();
     const [unmount, setUnmount] = useState(false);

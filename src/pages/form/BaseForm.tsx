@@ -1,6 +1,14 @@
 import React from "react";
 import { PageWrapper } from "@/components";
-import { Form, Input, DatePicker, InputNumber, Button, Radio } from "antd";
+import {
+    Form,
+    Input,
+    DatePicker,
+    InputNumber,
+    Button,
+    Radio,
+    Mentions,
+} from "antd";
 import { FormInstance } from "antd/lib/form";
 
 class BaseForm extends React.PureComponent<{}> {
@@ -11,6 +19,7 @@ class BaseForm extends React.PureComponent<{}> {
 
     onFinish = (res: any) => {
         console.log(res);
+        alert(JSON.stringify(res));
     };
 
     onReset = () => {
@@ -40,14 +49,48 @@ class BaseForm extends React.PureComponent<{}> {
                     >
                         <DatePicker.RangePicker />
                     </Form.Item>
-                    <Form.Item label="项目目标" name="target">
+                    <Form.Item
+                        label="项目目标"
+                        name="target"
+                        rules={[{ required: true, message: "请输入项目目标" }]}
+                    >
                         <Input.TextArea
                             rows={3}
                             placeholder="请输入你的阶段性工作目标"
                         />
                     </Form.Item>
-                    <Form.Item label="衡量标准" name="pip">
+                    <Form.Item
+                        label="衡量标准"
+                        name="pip"
+                        rules={[{ required: true, message: "请输入衡量标准" }]}
+                    >
                         <Input.TextArea rows={3} placeholder="请输入衡量标准" />
+                    </Form.Item>
+                    <Form.Item label="客户（选填）" name="customer">
+                        <Mentions>
+                            <Mentions.Option value="afc163">
+                                afc163
+                            </Mentions.Option>
+                            <Mentions.Option value="zombieJ">
+                                zombieJ
+                            </Mentions.Option>
+                            <Mentions.Option value="yesmeck">
+                                yesmeck
+                            </Mentions.Option>
+                        </Mentions>
+                    </Form.Item>
+                    <Form.Item label="邀评人（选填）" name="comments">
+                        <Mentions>
+                            <Mentions.Option value="afc163">
+                                afc163
+                            </Mentions.Option>
+                            <Mentions.Option value="zombieJ">
+                                zombieJ
+                            </Mentions.Option>
+                            <Mentions.Option value="yesmeck">
+                                yesmeck
+                            </Mentions.Option>
+                        </Mentions>
                     </Form.Item>
                     <Form.Item label="权重" name="weight" initialValue={0}>
                         <InputNumber

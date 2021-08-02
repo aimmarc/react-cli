@@ -14,6 +14,7 @@ import Analysis from "@/pages/dashboard/Analysis";
 import BaseForm from "@/pages/form/BaseForm";
 import Article from "@/pages/list/search/Article";
 import Setting from "@/pages/common/Setting";
+import Table from "@/pages/list/Table";
 
 export interface IRouter {
     path?: String | any;
@@ -99,6 +100,11 @@ const routerConfig: Array<IRouter> = [
                                 name: "文章搜索",
                             },
                         ],
+                    },
+                    {
+                        path: "/list/table",
+                        name: "查询表格",
+                        component: Table,
                     },
                     {
                         component: NotFound,
