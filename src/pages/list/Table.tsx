@@ -118,7 +118,7 @@ class TableList extends React.PureComponent<{}> {
                         <Input />
                     </FormItem>
                     <FormItem label="上次调度时间">
-                        <DatePicker />
+                        <DatePicker style={{ width: '100%' }} />
                     </FormItem>
                 </CollapseForm>
                 <Table

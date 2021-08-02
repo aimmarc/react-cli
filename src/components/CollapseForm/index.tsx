@@ -8,12 +8,13 @@ export interface TCollapseFormProps {
     span?: number;
     extra?: React.ReactElement | string;
     onFinish?: (event: any) => void;
+    onReset?: () => void;
 }
 
 const formItemLayout = {
     labelCol: {
         xs: { span: 24 },
-        sm: { span: 8 },
+        sm: { span: 6 },
     },
     wrapperCol: {
         xs: { span: 24 },
@@ -29,17 +30,17 @@ function getFields(
     if (children && children.length > 0) {
         return expand
             ? children.map((child: React.ReactElement, index: number) => (
-                  <Col span={span} key={index}>
-                      {child}
-                  </Col>
-              ))
+                <Col span={span} key={index}>
+                    {child}
+                </Col>
+            ))
             : children
-                  .slice(0, Math.floor(24 / span))
-                  .map((child: React.ReactElement, index: number) => (
-                      <Col span={span} key={index}>
-                          {child}
-                      </Col>
-                  ));
+                .slice(0, Math.floor(24 / span))
+                .map((child: React.ReactElement, index: number) => (
+                    <Col span={span} key={index}>
+                        {child}
+                    </Col>
+                ));
     } else {
         return children;
     }
@@ -67,7 +68,7 @@ const CollapseForm: React.FC<TCollapseFormProps> = (
         >
             <Row>{getFields(children, span, expand)}</Row>
             <div className={styles.btnBar}>
-                <Button onClick={() => form.resetFields()}>重置</Button>
+                <Button onClick={() => { form.resetFields(); props.onReset && props.onReset() }}>重置</Button>
                 <Button type="primary" htmlType="submit">
                     查询
                 </Button>
