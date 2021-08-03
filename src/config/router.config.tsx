@@ -157,12 +157,12 @@ const routerConfig: Array<IRouter> = [
                     {
                         path: "/error/403",
                         name: "403",
-                        component: NotFound,
+                        component: NotAccess,
                     },
                     {
                         path: "/error/404",
                         name: "404",
-                        component: NotAccess,
+                        component: NotFound,
                     },
                     {
                         path: "/error/500",
