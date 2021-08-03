@@ -1,7 +1,7 @@
 import React from "react";
 import { PageWrapper } from "@/components";
 import { Input } from "antd";
-import styles from "./Article.less";
+import styles from "./index.less";
 
 const { Search } = Input;
 

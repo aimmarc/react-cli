@@ -4,10 +4,20 @@ import { Input, Form, DatePicker, Button, Table, Badge, message } from "antd";
 import { CollapseForm } from "@/components";
 import { injectModel } from "@/models";
 import EditModal from "./components/EditModal";
+import { IListPageResponse } from "@/utils/api/httpResponse";
 
 const FormItem = Form.Item;
 
-class TableList extends React.PureComponent<{}> {
+interface ITableListState {
+    tableData: {
+        total: number;
+        list: any[];
+    };
+    loading: boolean;
+    visible: boolean;
+}
+
+class TableList extends React.PureComponent<{}, ITableListState> {
     columns = [
         {
             title: "规则名称",
@@ -75,9 +85,10 @@ class TableList extends React.PureComponent<{}> {
         this.setState({
             loading: true,
         });
-        const { data, code } = await injectModel.listService
+        const res: IListPageResponse = await injectModel.listService
             .table(this.queryParams)
             .catch(() => this.setState({ loading: false }));
+        const { code, data } = res;
         if (code === 0) {
             this.setState({
                 tableData: data,

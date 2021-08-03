@@ -11,8 +11,8 @@ const instance = axios.create({
 interceptors(instance);
 
 class Api {
-    get(url: string, config?: AxiosRequestConfig) {
-        return instance.get(url, config);
+    get(url: string) {
+        return instance.get(url);
     }
     post(url: string, data?: Object) {
         return instance.post(url, data);
@@ -20,8 +20,8 @@ class Api {
     put(url: string, data?: Object) {
         return instance.put(url, data);
     }
-    delete(url: string, config?: AxiosRequestConfig) {
-        return instance.delete(url, config);
+    delete(url: string) {
+        return instance.delete(url);
     }
 }
 

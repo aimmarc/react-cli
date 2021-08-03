@@ -1,17 +1,21 @@
+import { getResponse, IBaseResponse } from "@/utils/api/httpResponse";
+
 export default class BaseMock {
     baseUrl = `//${location.host}/api/`;
 
     getSuccess() {
-        const ret: any = {};
-        ret.code = 0;
-        ret.data = {};
+        const ret: IBaseResponse = {
+            code: 0,
+            data: {}
+        };
         return ret;
     }
 
     getFail() {
-        const ret: any = {};
-        ret.code = -1;
-        ret.data = {};
+        const ret: IBaseResponse = {
+            code: -1,
+            data: {}
+        };
         return ret;
     }
 

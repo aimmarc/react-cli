@@ -4,17 +4,22 @@
  * @date 2021-02-09
  * @description 路由配置
  */
-import Detail from "@/pages/detail";
-import NotFound from "@/pages/404";
 import React from "react";
 import History from "history";
+import Detail from "@/pages/detail/BasicDetail";
+import NotFound from "@/pages/404";
 import BaseLayout from "@/layouts/BaseLayout";
 import Login from "@/pages/user/Login";
 import Analysis from "@/pages/dashboard/Analysis";
 import BaseForm from "@/pages/form/BaseForm";
 import Article from "@/pages/list/search/Article";
 import Setting from "@/pages/common/Setting";
-import Table from "@/pages/list/Table";
+import TableList from "@/pages/list/TableList";
+import BasicList from "@/pages/list/BasicList";
+import CardList from "@/pages/list/CardList";
+import AdvancedDetail from "@/pages/detail/AdvancedDetail";
+import NotAccess from "@/pages/403";
+import ServerError from "@/pages/500";
 
 export interface IRouter {
     path?: String | any;
@@ -24,16 +29,14 @@ export interface IRouter {
     name?: string;
     icon?: string;
     exact?: boolean;
+    cache?: boolean;
 }
 
 const routerConfig: Array<IRouter> = [
     {
         path: "/user/login",
+        cache: false,
         component: Login,
-    },
-    {
-        path: "/detail",
-        component: Detail,
     },
     {
         path: "/",
@@ -60,7 +63,7 @@ const routerConfig: Array<IRouter> = [
             },
             {
                 path: "/form",
-                name: "表单",
+                name: "表单页",
                 icon: "icon-edit-square",
                 routes: [
                     {
@@ -79,7 +82,7 @@ const routerConfig: Array<IRouter> = [
             },
             {
                 path: "/list",
-                name: "列表",
+                name: "列表页",
                 icon: "icon-table",
                 routes: [
                     {
@@ -104,10 +107,67 @@ const routerConfig: Array<IRouter> = [
                     {
                         path: "/list/table",
                         name: "查询表格",
-                        component: Table,
+                        component: TableList,
+                    },
+                    {
+                        path: "/list/basicList",
+                        name: "标准列表",
+                        component: BasicList,
+                    },
+                    {
+                        path: "/list/cardList",
+                        name: "卡片列表",
+                        component: CardList,
                     },
                     {
                         component: NotFound,
+                    },
+                ],
+            },
+            {
+                path: "/detail",
+                name: "详情页",
+                icon: "icon-detail",
+                routes: [
+                    {
+                        path: "/detail",
+                        redirect: "/detail/basicDetail",
+                    },
+                    {
+                        path: "/detail/basicDetail",
+                        name: "基础详情页",
+                        component: Detail,
+                    },
+                    {
+                        path: "/detail/advancedDetail",
+                        name: "高级详情页",
+                        component: AdvancedDetail,
+                    },
+                ],
+            },
+            {
+                path: "/error",
+                icon: "icon-error",
+                name: "异常页",
+                routes: [
+                    {
+                        path: "/error",
+                        redirect: "/error/404",
+                    },
+                    {
+                        path: "/error/403",
+                        name: "403",
+                        component: NotFound,
+                    },
+                    {
+                        path: "/error/404",
+                        name: "404",
+                        component: NotAccess,
+                    },
+                    {
+                        path: "/error/500",
+                        name: "500",
+                        component: ServerError,
                     },
                 ],
             },

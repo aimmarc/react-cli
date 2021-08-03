@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { memo } from "react";
 import {
     HashRouter,
     Route,
@@ -58,4 +58,4 @@ const BasicRoute = () =>
         </HashRouter>
     );
 
-export default BasicRoute;
+export default memo(BasicRoute);

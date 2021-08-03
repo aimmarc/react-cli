@@ -1,9 +1,15 @@
+/**
+ * 一般返回
+ */
 export interface IBaseResponse {
     code: number;
-    data: any;
+    data?: any;
     message?: string;
 }
 
+/**
+ * 分页列表
+ */
 export interface IListPageResponse extends IBaseResponse {
     data: {
         total: number;
@@ -23,4 +29,15 @@ export function getResponse(response: IBaseResponse): IBaseResponse {
         message: response.message || "",
     };
     return ret;
+}
+
+/**
+ * 获取异常返回
+ * @param error 
+ */
+export function getFailResponse(error: IBaseResponse) {
+    const ret: IBaseResponse = {
+        code: error.code || -1,
+        message: error.message || '未知异常'
+    }
 }
