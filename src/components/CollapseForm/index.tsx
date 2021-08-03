@@ -66,6 +66,7 @@ const CollapseForm: React.FC<TCollapseFormProps> = (
             onFinish={props.onFinish}
             {...formItemLayout}
             style={{ marginBottom: 20 }}
+            labelAlign="left"
         >
             <Row>{getFields(children, span, expand)}</Row>
             <div className={styles.btnBar}>
