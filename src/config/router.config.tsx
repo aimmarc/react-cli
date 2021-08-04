@@ -23,10 +23,11 @@ import ServerError from "@/pages/500";
 import SearchWrapper from "@/pages/list/search/SearchWrapper";
 import Project from "@/pages/list/search/Project";
 import Application from "@/pages/list/search/Application";
+import { IWrappedComponent } from "mobx-react";
 
 export interface IRouter {
     path?: String | any;
-    component?: React.FC | React.ComponentClass;
+    component?: React.FC | React.ComponentClass | IWrappedComponent<any>;
     redirect?: History.LocationDescriptor | String | any;
     routes?: Array<IRouter>;
     name?: string;
@@ -158,6 +159,12 @@ const routerConfig: Array<IRouter> = [
                         component: AdvancedDetail,
                     },
                 ],
+            },
+            {
+                path: "/result",
+                name: "结果页",
+                icon: "icon-check-circle",
+                routes: [],
             },
             {
                 path: "/error",
