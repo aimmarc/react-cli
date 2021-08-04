@@ -6,16 +6,13 @@ import { ConfigProvider } from "antd";
 import zhCN from "antd/lib/locale/zh_CN";
 import store from "./store";
 import { Provider as MobxProvider } from "mobx-react";
-import { Provider as KeepAliveProvider } from "react-keep-alive";
 import "./mock";
 
 ReactDOM.render(
-  <ConfigProvider locale={zhCN}>
-    <MobxProvider {...store}>
-      <KeepAliveProvider>
-        <App />
-      </KeepAliveProvider>
-    </MobxProvider>
-  </ConfigProvider>,
-  document.getElementById("root")
+    <ConfigProvider locale={zhCN}>
+        <MobxProvider {...store}>
+            <App />
+        </MobxProvider>
+    </ConfigProvider>,
+    document.getElementById("root")
 );

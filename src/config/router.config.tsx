@@ -20,6 +20,9 @@ import CardList from "@/pages/list/CardList";
 import AdvancedDetail from "@/pages/detail/AdvancedDetail";
 import NotAccess from "@/pages/403";
 import ServerError from "@/pages/500";
+import SearchWrapper from "@/pages/list/search/SearchWrapper";
+import Project from "@/pages/list/search/Project";
+import Application from "@/pages/list/search/Application";
 
 export interface IRouter {
     path?: String | any;
@@ -92,6 +95,7 @@ const routerConfig: Array<IRouter> = [
                     {
                         path: "/list/search",
                         name: "搜索列表",
+                        component: SearchWrapper,
                         routes: [
                             {
                                 path: "/list/search",
@@ -100,7 +104,17 @@ const routerConfig: Array<IRouter> = [
                             {
                                 path: "/list/search/article",
                                 component: Article,
-                                name: "文章搜索",
+                                name: "搜索列表（文章）",
+                            },
+                            {
+                                path: "/list/search/project",
+                                component: Project,
+                                name: "搜索列表（项目）",
+                            },
+                            {
+                                path: "/list/search/application",
+                                component: Application,
+                                name: "搜索列表（应用）",
                             },
                         ],
                     },
