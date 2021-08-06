@@ -1,10 +1,11 @@
-import React, { memo } from "react";
+import React, { ComponentType, memo } from "react";
 import {
     HashRouter,
     Route,
     Switch,
     Redirect,
     BrowserRouter,
+    RouteComponentProps,
 } from "react-router-dom";
 import routerConfig, { IRouter } from "../config/router.config";
 import config from "../config/app";
@@ -19,9 +20,12 @@ import { createHashHistory, createBrowserHistory } from "history";
  */
 const mapRoutes = (routes: Array<IRouter>) =>
     routes.map((item: IRouter, index) => {
-        let component;
+        let component:
+            | ComponentType<RouteComponentProps<any>>
+            | ComponentType<any>
+            | undefined;
         if (item.routes) {
-            const Wrapper = item.component || React.Fragment;
+            const Wrapper: any = item.component || React.Fragment;
             component = () => (
                 <Wrapper>
                     <Switch>{mapRoutes(item.routes || [])}</Switch>
@@ -63,7 +67,6 @@ const history =
     config.routerMode === "history"
         ? createBrowserHistory()
         : createHashHistory();
-console.log(history);
 
 export { history };
 

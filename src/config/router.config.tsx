@@ -4,7 +4,7 @@
  * @date 2021-02-09
  * @description 路由配置
  */
-import React from "react";
+import React, { ComponentType } from "react";
 import History from "history";
 import Detail from "@/pages/detail/BasicDetail";
 import NotFound from "@/pages/404";
@@ -23,11 +23,11 @@ import ServerError from "@/pages/500";
 import SearchWrapper from "@/pages/list/search/SearchWrapper";
 import Project from "@/pages/list/search/Project";
 import Application from "@/pages/list/search/Application";
-import { IWrappedComponent } from "mobx-react";
+import { RouteComponentProps } from "react-router-dom";
 
 export interface IRouter {
     path?: String | any;
-    component?: React.FC | React.ComponentClass | IWrappedComponent<any>;
+    component?: ComponentType<RouteComponentProps<any>> | ComponentType<any>;
     redirect?: History.LocationDescriptor | String | any;
     routes?: Array<IRouter>;
     name?: string;
