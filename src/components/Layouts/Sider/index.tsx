@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./index.less";
 import SiderMenu from "./SiderMenu";
-import config from "@/utils/constants/config";
+import config from "@/config/app";
 
 interface IProps {
   menuData: any[];
