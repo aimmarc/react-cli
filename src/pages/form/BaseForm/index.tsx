@@ -43,11 +43,15 @@ class BaseForm extends React.PureComponent<{}> {
 
         return (
             <PageWrapper title="基础表单" bg fit>
+                <p>
+                    表单页用于向用户收集或验证信息，基础表单常见于数据项较少的表单场景。
+                </p>
                 <Form
                     layout="vertical"
                     style={{ padding: "0 20%" }}
                     onFinish={this.onFinish}
                     ref={this.formRef}
+                    className="mt-24"
                 >
                     <Form.Item
                         label="标题"

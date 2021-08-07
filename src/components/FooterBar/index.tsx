@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./index.less";
 import config from "@/config/app";
-import { app } from "@/store";
 import { inject, observer } from "mobx-react";
 
 interface IFooterBarProps {

@@ -4,18 +4,33 @@ import {
     Form,
     Input,
     DatePicker,
-    InputNumber,
     Button,
-    Radio,
-    Mentions,
     Tooltip,
+    Steps,
+    Select,
+    Divider,
 } from "antd";
 import { FormInstance } from "antd/lib/form";
 import { QuestionCircleOutlined } from "@ant-design/icons";
+import Step1 from "./components/Step1";
+import Step2 from "./components/Step2";
+import Step3 from "./components/Step3";
+
+const steps = [
+    { title: "填写转账信息" },
+    { title: "确认转账信息" },
+    { title: "完成" },
+];
+
+interface IStepFormProps {
+    name: string;
+    current: number;
+}
 
 class StepForm extends React.PureComponent<{}> {
     state = {
         name: "jack",
+        current: 0,
     };
     formRef: any = React.createRef<FormInstance>();
 
@@ -28,7 +43,20 @@ class StepForm extends React.PureComponent<{}> {
         this.formRef.current.resetFields();
     };
 
+    goAhead = () => {
+        let { current } = this.state;
+        if (current >= 2) {
+            current = 0;
+        } else {
+            current++;
+        }
+        this.setState({
+            current,
+        });
+    };
+
     render() {
+        const { current } = this.state;
         const customLabel = (
             <div>
                 客户
@@ -43,105 +71,54 @@ class StepForm extends React.PureComponent<{}> {
 
         return (
             <PageWrapper title="分步表单" bg fit>
-                <Form
-                    layout="vertical"
-                    style={{ padding: "0 20%" }}
-                    onFinish={this.onFinish}
-                    ref={this.formRef}
+                <p>
+                    将一个冗长或用户不熟悉的表单任务分成多个步骤，指导用户完成。
+                </p>
+                <div style={{ padding: "0 100px" }} className="mt-24">
+                    <Steps current={current}>
+                        {steps.map((item) => (
+                            <Steps.Step key={item.title} title={item.title} />
+                        ))}
+                    </Steps>
+                </div>
+                <div
+                    style={{
+                        padding: "0 30%",
+                    }}
                 >
-                    <Form.Item
-                        label="标题"
-                        name="title"
-                        rules={[{ required: true, message: "请输入标题" }]}
-                    >
-                        <Input placeholder="为项目起一个名字" />
-                    </Form.Item>
-                    <Form.Item
-                        label="起止日期"
-                        name="dates"
-                        rules={[{ required: true, message: "请选择日期" }]}
-                    >
-                        <DatePicker.RangePicker />
-                    </Form.Item>
-                    <Form.Item
-                        label="项目目标"
-                        name="target"
-                        rules={[{ required: true, message: "请输入项目目标" }]}
-                    >
-                        <Input.TextArea
-                            rows={3}
-                            placeholder="请输入你的阶段性工作目标"
+                    {current === 0 && <Step1 />}
+                    {current === 1 && <Step2 />}
+                    {current === 2 && (
+                        <Step3
+                            backUp={() =>
+                                this.setState({
+                                    current: 0,
+                                })
+                            }
                         />
-                    </Form.Item>
-                    <Form.Item
-                        label="衡量标准"
-                        name="pip"
-                        rules={[{ required: true, message: "请输入衡量标准" }]}
-                    >
-                        <Input.TextArea rows={3} placeholder="请输入衡量标准" />
-                    </Form.Item>
-                    <Form.Item label={customLabel} name="customer">
-                        <Mentions>
-                            <Mentions.Option value="afc163">
-                                afc163
-                            </Mentions.Option>
-                            <Mentions.Option value="zombieJ">
-                                zombieJ
-                            </Mentions.Option>
-                            <Mentions.Option value="yesmeck">
-                                yesmeck
-                            </Mentions.Option>
-                        </Mentions>
-                    </Form.Item>
-                    <Form.Item
-                        label={
-                            <div>
-                                邀评人
-                                <span style={{ color: "#999" }}>（选填）</span>
-                            </div>
-                        }
-                        name="comments"
-                    >
-                        <Mentions>
-                            <Mentions.Option value="afc163">
-                                afc163
-                            </Mentions.Option>
-                            <Mentions.Option value="zombieJ">
-                                zombieJ
-                            </Mentions.Option>
-                            <Mentions.Option value="yesmeck">
-                                yesmeck
-                            </Mentions.Option>
-                        </Mentions>
-                    </Form.Item>
-                    <Form.Item label="权重" name="weight" initialValue={0}>
-                        <InputNumber
-                            step={1}
-                            precision={0}
-                            formatter={(value) => `${value}%`}
-                            parser={(value: any) => value.replace("%", "")}
-                            min={0}
-                        />
-                    </Form.Item>
-                    <Form.Item label="目标公开" name="public">
-                        <Radio.Group>
-                            <Radio value={1}>公开</Radio>
-                            <Radio value={2}>部分公开</Radio>
-                            <Radio value={3}>不公开</Radio>
-                        </Radio.Group>
-                    </Form.Item>
-                    <Form.Item>
-                        <Button type="primary" htmlType="submit">
-                            提交
-                        </Button>
+                    )}
+                    {current < 2 && (
                         <Button
-                            style={{ marginLeft: 10 }}
-                            onClick={this.onReset}
+                            type="primary"
+                            htmlType="submit"
+                            onClick={this.goAhead}
                         >
-                            重置
+                            下一步
                         </Button>
-                    </Form.Item>
-                </Form>
+                    )}
+                </div>
+                <Divider />
+                <div>
+                    <h3>说明</h3>
+                    <h4>转账到支付宝账户</h4>
+                    <p>
+                        如果需要，这里可以放一些关于产品的常见问题说明。如果需要，这里可以放一些关于产品的常见问题说明。如果需要，这里可以放一些关于产品的常见问题说明。
+                    </p>
+                    <h4>转账到银行卡</h4>
+                    <p>
+                        如果需要，这里可以放一些关于产品的常见问题说明。如果需要，这里可以放一些关于产品的常见问题说明。如果需要，这里可以放一些关于产品的常见问题说明。
+                    </p>
+                </div>
             </PageWrapper>
         );
     }
