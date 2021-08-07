@@ -1,3 +1,10 @@
+/**
+ * @author aimmarc
+ * @filename router/index.tsx
+ * @date 2021-02-09
+ * @param routes
+ * @description 生成路由
+ */
 import React, { ComponentType, memo } from "react";
 import {
     HashRouter,
@@ -12,11 +19,9 @@ import config from "../config/app";
 import { createHashHistory, createBrowserHistory } from "history";
 
 /**
- * @author aimmarc
- * @filename router/index.tsx
- * @date 2021-02-09
+ * 生成路由
  * @param routes
- * @description 生成路由
+ * @returns
  */
 const mapRoutes = (routes: Array<IRouter>) =>
     routes.map((item: IRouter, index) => {
@@ -52,6 +57,10 @@ const mapRoutes = (routes: Array<IRouter>) =>
         );
     });
 
+/**
+ * 路由组件
+ * @returns
+ */
 const BasicRoute = () =>
     config.routerMode === "history" ? (
         <BrowserRouter>

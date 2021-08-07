@@ -31,17 +31,17 @@ function getFields(
     if (children && children.length > 0) {
         return expand
             ? children.map((child: React.ReactElement, index: number) => (
-                <Col span={span} key={index}>
-                    {child}
-                </Col>
-            ))
+                  <Col span={span} key={index}>
+                      {child}
+                  </Col>
+              ))
             : children
-                .slice(0, Math.floor(24 / span))
-                .map((child: React.ReactElement, index: number) => (
-                    <Col span={span} key={index}>
-                        {child}
-                    </Col>
-                ));
+                  .slice(0, Math.floor(24 / span))
+                  .map((child: React.ReactElement, index: number) => (
+                      <Col span={span} key={index}>
+                          {child}
+                      </Col>
+                  ));
     } else {
         return children;
     }
@@ -70,8 +70,19 @@ const CollapseForm: React.FC<TCollapseFormProps> = (
         >
             <Row>{getFields(children, span, expand)}</Row>
             <div className={styles.btnBar}>
-                <Button onClick={() => { form.resetFields(); props.onReset && props.onReset() }}>重置</Button>
-                <Button type="primary" htmlType="submit" loading={props.loading}>
+                <Button
+                    onClick={() => {
+                        form.resetFields();
+                        props.onReset && props.onReset();
+                    }}
+                >
+                    重置
+                </Button>
+                <Button
+                    type="primary"
+                    htmlType="submit"
+                    loading={props.loading}
+                >
                     查询
                 </Button>
                 {props.extra}

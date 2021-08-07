@@ -1,6 +1,5 @@
 import React from "react";
 import style from "./index.less";
-import { useHistory } from "react-router-dom";
 import { PageHeader, Layout, BackTop } from "antd";
 const { Content } = Layout;
 
@@ -13,17 +12,18 @@ interface IProps {
     subTitle?: string | React.ReactElement;
     goBack?: boolean;
     extra?: React.ReactElement;
+    style?: React.CSSProperties;
+    backTop?: boolean;
 }
 
 const PageWrapper: React.FC<IProps> = (props: IProps): React.ReactElement => {
-    const history = useHistory();
-
     return (
         <div
             className={style.pageWrapper}
             style={{
                 minHeight: props.fit ? "calc(100vh - 104px)" : "auto",
                 backgroundColor: props.bg ? "#fff" : "",
+                ...props.style,
             }}
         >
             {props.custom ? (
@@ -37,7 +37,7 @@ const PageWrapper: React.FC<IProps> = (props: IProps): React.ReactElement => {
                     <Content>{props.children}</Content>
                 </PageHeader>
             )}
-            <BackTop />
+            {props.backTop === false ? null : <BackTop />}
         </div>
     );
 };

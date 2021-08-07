@@ -4,7 +4,8 @@
  * @date 2021-02-09
  * @description 路由配置
  */
-import React, { ComponentType } from "react";
+import { ComponentType } from "react";
+import { RouteComponentProps } from "react-router-dom";
 import History from "history";
 import Detail from "@/pages/detail/BasicDetail";
 import NotFound from "@/pages/404";
@@ -23,7 +24,8 @@ import ServerError from "@/pages/500";
 import SearchWrapper from "@/pages/list/search/SearchWrapper";
 import Project from "@/pages/list/search/Project";
 import Application from "@/pages/list/search/Application";
-import { RouteComponentProps } from "react-router-dom";
+import StepForm from "@/pages/form/StepForm";
+import AdvancedForm from "@/pages/form/AdvancedForm";
 
 export interface IRouter {
     path?: String | any;
@@ -78,6 +80,16 @@ const routerConfig: Array<IRouter> = [
                         path: "/form/base-form",
                         component: BaseForm,
                         name: "基础表单",
+                    },
+                    {
+                        path: "/form/step-form",
+                        component: StepForm,
+                        name: "分步表单",
+                    },
+                    {
+                        path: "/form/advanced-form",
+                        component: AdvancedForm,
+                        name: "高级表单",
                     },
                     {
                         component: NotFound,
