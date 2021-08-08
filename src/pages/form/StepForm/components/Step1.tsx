@@ -1,3 +1,4 @@
+import { FormGroup } from "@/components";
 import { Form, Input, InputNumber, Select } from "antd";
 import React from "react";
 
@@ -15,32 +16,23 @@ const Step1: React.FC = (): React.ReactElement => {
                     </Select.Option>
                 </Select>
             </Form.Item>
-
-            <div className="ant-pro-form-group">
-                <div className="ant-pro-form-group-title">收款账户</div>
-                <div
-                    className="ant-space ant-space-horizontal ant-space-align-center ant-pro-form-group-container"
-                    style={{ gap: "8px" }}
+            <FormGroup gap="8px" label="收款账户">
+                <Form.Item
+                    name="dates"
+                    rules={[{ required: true, message: "请选择日期" }]}
                 >
-                    <Form.Item
-                        name="dates"
-                        rules={[{ required: true, message: "请选择日期" }]}
-                    >
-                        <Select placeholder="请选择">
-                            <Select.Option value="alipay">支付宝</Select.Option>
-                            <Select.Option value="bankCard">
-                                银行卡
-                            </Select.Option>
-                        </Select>
-                    </Form.Item>
-                    <Form.Item
-                        name="dates"
-                        rules={[{ required: true, message: "请输入" }]}
-                    >
-                        <Input placeholder="请输入" />
-                    </Form.Item>
-                </div>
-            </div>
+                    <Select placeholder="请选择">
+                        <Select.Option value="alipay">支付宝</Select.Option>
+                        <Select.Option value="bankCard">银行卡</Select.Option>
+                    </Select>
+                </Form.Item>
+                <Form.Item
+                    name="dates"
+                    rules={[{ required: true, message: "请输入" }]}
+                >
+                    <Input placeholder="请输入" />
+                </Form.Item>
+            </FormGroup>
             <Form.Item
                 label="收款人姓名"
                 name="target"
