@@ -1,7 +1,8 @@
 import React from "react";
 import style from "./index.less";
 import { PageHeader, Layout, BackTop } from "antd";
-import config from "@/config/app";
+import { inject, observer } from "mobx-react";
+import { IAppStore } from "@/store/modules/app";
 const { Content } = Layout;
 
 interface IProps {
@@ -15,15 +16,18 @@ interface IProps {
     extra?: React.ReactElement;
     style?: React.CSSProperties;
     backTop?: boolean;
+    app?: IAppStore;
 }
 
 const PageWrapper: React.FC<IProps> = (props: IProps): React.ReactElement => {
+    const setting = props.app ? props.app.setting : { showTabs: true };
+
     return (
         <div
             className={style.pageWrapper}
             style={{
                 minHeight: props.fit
-                    ? `calc(100vh - ${config.showTabs ? 104 : 66}px)`
+                    ? `calc(100vh - ${setting.showTabs ? 104 : 66}px)`
                     : "auto",
                 backgroundColor: props.bg ? "#fff" : "",
                 ...props.style,
@@ -45,4 +49,4 @@ const PageWrapper: React.FC<IProps> = (props: IProps): React.ReactElement => {
     );
 };
 
-export default PageWrapper;
+export default inject("app")(observer(PageWrapper));

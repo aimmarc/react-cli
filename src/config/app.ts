@@ -5,6 +5,7 @@ export default {
     baseUrl: "",
     menuWidth: 272,
     showTabs: true,
+    showFullScreen: true,
     index: "/dashboard/analysis",
     notTabs: ["/user/login"],
     routerMode: "history", // hash

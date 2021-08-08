@@ -19,6 +19,7 @@ import { useHistory } from "react-router-dom";
 
 interface IProps {
     onLogout: any;
+    showFullScreen: boolean;
 }
 
 const Operate: React.FC<IProps> = (props: IProps): React.ReactElement => {
@@ -37,8 +38,6 @@ const Operate: React.FC<IProps> = (props: IProps): React.ReactElement => {
             window.onresize = null;
         };
     }, []);
-
-    const handleLogout = () => {};
 
     const menu = (
         <Menu>
@@ -77,9 +76,11 @@ const Operate: React.FC<IProps> = (props: IProps): React.ReactElement => {
 
     return (
         <div className={style.operate}>
-            <div className={style.iconButton} onClick={onFull}>
-                {full ? <FullscreenExitOutlined /> : <FullscreenOutlined />}
-            </div>
+            {props.showFullScreen && (
+                <div className={style.iconButton} onClick={onFull}>
+                    {full ? <FullscreenExitOutlined /> : <FullscreenOutlined />}
+                </div>
+            )}
             <div
                 className={style.iconButton}
                 onClick={() => history.push("/setting")}

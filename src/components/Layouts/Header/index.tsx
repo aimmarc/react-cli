@@ -6,20 +6,24 @@ import Menu from "./Menu";
 import Bread from "./Bread";
 
 interface IProps {
-  onCollapsed: MouseEventHandler<HTMLDivElement>;
-  collapsed: boolean;
-  onLogout: MouseEventHandler<HTMLDivElement>;
+    onCollapsed: MouseEventHandler<HTMLDivElement>;
+    collapsed: boolean;
+    onLogout: MouseEventHandler<HTMLDivElement>;
+    showFullScreen: boolean;
 }
 
 const Header: React.FC<IProps> = (props: IProps): React.ReactElement => {
-  return (
-    <nav className={style.header}>
-      <Logo collapsed={props.collapsed} />
-      <Menu onCollapsed={props.onCollapsed} collapsed={props.collapsed} />
-      <Bread />
-      <Operate onLogout={props.onLogout} />
-    </nav>
-  );
+    return (
+        <nav className={style.header}>
+            <Logo collapsed={props.collapsed} />
+            <Menu onCollapsed={props.onCollapsed} collapsed={props.collapsed} />
+            <Bread />
+            <Operate
+                onLogout={props.onLogout}
+                showFullScreen={props.showFullScreen}
+            />
+        </nav>
+    );
 };
 
 export default Header;

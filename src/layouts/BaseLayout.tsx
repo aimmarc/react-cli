@@ -6,15 +6,20 @@ import { resolveMenuData } from "@/utils/resolveMenuData";
 import { observer, inject } from "mobx-react";
 import { useHistory } from "react-router";
 import MainLayout from "./MainLayout";
-import cnfig from "@/config/app";
+import { IAppStore } from "@/store/modules/app";
+
+interface IBaseLayoutProps {
+    app: IAppStore;
+}
 
 /**
  * 基础布局
  * @param props
  * @returns
  */
-const BaseLayout: React.FC<{}> = (props: any): React.ReactElement => {
+const BaseLayout: React.FC<IBaseLayoutProps> = (props): React.ReactElement => {
     const { app } = props;
+    const { setting } = app;
     const menuData = resolveMenuData(routerConfig);
     const history = useHistory();
 
@@ -32,10 +37,13 @@ const BaseLayout: React.FC<{}> = (props: any): React.ReactElement => {
                 onCollapsed={onCollapsed}
                 collapsed={app.collapsed}
                 onLogout={onLogout}
+                showFullScreen={app.setting.showFullScreen}
             />
             <Sider menuData={menuData} collapsed={app.collapsed} />
-            {cnfig.showTabs && <TabBar tabs={app.tabs} active="" />}
-            <MainLayout collapsed={app.collapsed}>{props.children}</MainLayout>
+            {setting.showTabs && <TabBar tabs={app.tabs} active="" />}
+            <MainLayout collapsed={app.collapsed} app={props.app}>
+                {props.children}
+            </MainLayout>
         </div>
     );
 };

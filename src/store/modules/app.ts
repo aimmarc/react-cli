@@ -1,14 +1,36 @@
 import { action, makeAutoObservable } from "mobx";
 import { TTabs } from "@/components/Layouts/TabBar";
+import app from "@/config/app";
+
+export interface ISetting {
+    showTabs: boolean;
+    showFullScreen: boolean;
+}
+
+export interface IAppStore {
+    tabs: TTabs[];
+    activeTab: string;
+    collapsed: boolean;
+    title: string;
+    setting: ISetting;
+    setSetting: (setting: ISetting) => void;
+    setTitle: (title: string) => void;
+    setActiveTab: (active: string) => void;
+    setTabs: (tabs: any[]) => void;
+    setCollapsed: (collapsed: boolean) => void;
+    getTabsData: () => void;
+    getSettingData: () => void;
+}
 
 /**
  * app
  */
-class App {
+class App implements IAppStore {
     tabs: TTabs[] = this.getTabsData();
     activeTab: string = "";
     collapsed: boolean = false;
     title: string = "";
+    setting: ISetting = this.getSettingData();
 
     constructor() {
         makeAutoObservable(this);
@@ -21,6 +43,16 @@ class App {
     getTabsData() {
         const tabsData = localStorage.getItem("TABS_DATA") || "[]";
         return JSON.parse(tabsData);
+    }
+
+    getSettingData() {
+        const setting =
+            localStorage.getItem("SETTING_DATA") ||
+            JSON.stringify({
+                showTabs: app.showTabs,
+                showFullScreen: app.showFullScreen,
+            });
+        return JSON.parse(setting);
     }
 
     @action setCollapsed = (collapsed: boolean) => {
@@ -46,6 +78,15 @@ class App {
      */
     @action setTitle = (title: string) => {
         this.title = title;
+    };
+
+    /**
+     * 更新设置
+     * @param setting
+     */
+    @action setSetting = (setting: ISetting) => {
+        this.setting = setting;
+        localStorage.setItem("SETTING_DATA", JSON.stringify(setting));
     };
 }
 
