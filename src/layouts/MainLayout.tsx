@@ -13,6 +13,7 @@ const MainLayout: React.FC<IProps> = (props: IProps): React.ReactElement => {
             className={styles.bg}
             style={{
                 paddingLeft: props.collapsed ? 78 + 8 : config.menuWidth + 8,
+                paddingTop: config.showTabs ? 96 : 58,
             }}
         >
             {props.children}

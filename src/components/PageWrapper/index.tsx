@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./index.less";
 import { PageHeader, Layout, BackTop } from "antd";
+import config from "@/config/app";
 const { Content } = Layout;
 
 interface IProps {
@@ -21,7 +22,9 @@ const PageWrapper: React.FC<IProps> = (props: IProps): React.ReactElement => {
         <div
             className={style.pageWrapper}
             style={{
-                minHeight: props.fit ? "calc(100vh - 104px)" : "auto",
+                minHeight: props.fit
+                    ? `calc(100vh - ${config.showTabs ? 104 : 66}px)`
+                    : "auto",
                 backgroundColor: props.bg ? "#fff" : "",
                 ...props.style,
             }}
