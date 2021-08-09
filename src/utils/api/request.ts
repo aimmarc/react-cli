@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
-import config from "../constants/config";
+import config from "@/config/app";
 import interceptors from "./interceptors";
 
 const instance = axios.create({

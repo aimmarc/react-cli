@@ -26,6 +26,8 @@ export default class BaseMock {
         let protos = targetClass.prototype;
         Object.getOwnPropertyNames(protos).forEach((key) => {
             if (key !== "constructor") {
+                console.log(key);
+                
                 new targetClass()[key]();
             }
         });
