@@ -5,6 +5,8 @@
 
 #### 软件架构
 从0开始搭建的react模板，支持typescript，支持tabBar；使用ant design组件库，使用mobx状态管理工具。
+预览：
+![预览](https://images.gitee.com/uploads/images/2021/0809/173645_57935d2a_2217046.png "WX20210809-173549.png")
 
 
 #### 安装教程
@@ -15,9 +17,7 @@
 
 #### 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+
 
 #### 参与贡献
 
