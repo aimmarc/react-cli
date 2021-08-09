@@ -1,8 +1,7 @@
 import React from "react";
 import { FooterBar, PageWrapper } from "@/components";
-import { Tooltip, PageHeader, Button } from "antd";
+import { PageHeader, Button } from "antd";
 import { FormInstance } from "antd/lib/form";
-import { QuestionCircleOutlined } from "@ant-design/icons";
 import Store from "./components/Store";
 import Premission from "./components/Premission";
 import EditTable from "./components/EditTable";

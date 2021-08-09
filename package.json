@@ -59,6 +59,7 @@
     "ie >=10"
   ],
   "dependencies": {
+    "@antv/g2": "^4.1.23",
     "@types/react-router-dom": "^5.1.7",
     "@umijs/use-request": "^1.4.3",
     "antd": "^4.12.2",

@@ -5,6 +5,7 @@ import OnlineHot from "./components/OnlineHot";
 import { Row, Col } from "antd";
 import { injectModel } from "@/models";
 import { IListPageResponse } from "@/utils/api/httpResponse";
+import SalePercent from "./components/SalePercent";
 
 const Analysis: React.FC = (): React.ReactElement => {
     const [rankeList, setRankList]: [{ list?: any[]; total?: number }, any] =
@@ -27,6 +28,9 @@ const Analysis: React.FC = (): React.ReactElement => {
             <Row gutter={12} className="mt-12">
                 <Col span={12}>
                     <OnlineHot data={rankeList} />
+                </Col>
+                <Col span={12}>
+                    <SalePercent />
                 </Col>
             </Row>
         </PageWrapper>

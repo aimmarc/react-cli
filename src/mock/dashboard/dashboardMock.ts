@@ -7,7 +7,7 @@ class DashboardMock extends BaseMock {
         ret.data["total"] = 999;
         ret.data["list|5"] = [
             {
-                "rank|+1": 10000000,
+                "rank|+1": 1,
                 "keyword|1-2": "关键字",
                 "userCount|1-999": 1,
                 "weekRate|0-100": 1,
