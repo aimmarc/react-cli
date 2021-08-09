@@ -6,6 +6,7 @@ import { Row, Col } from "antd";
 import { injectModel } from "@/models";
 import { IListPageResponse } from "@/utils/api/httpResponse";
 import SalePercent from "./components/SalePercent";
+import Turnover from "./components/Turnover";
 
 const Analysis: React.FC = (): React.ReactElement => {
     const [rankeList, setRankList]: [{ list?: any[]; total?: number }, any] =
@@ -25,6 +26,7 @@ const Analysis: React.FC = (): React.ReactElement => {
     return (
         <PageWrapper custom>
             <StatisticCard />
+            <Turnover />
             <Row gutter={12} className="mt-12">
                 <Col span={12}>
                     <OnlineHot data={rankeList} />

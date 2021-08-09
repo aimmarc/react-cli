@@ -1,0 +1,34 @@
+.shopList {
+    li {
+        display: flex;
+        align-items: center;
+        margin-top: 16px;
+        zoom: 1;
+
+        .shopRank {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-top: 1.5px;
+            margin-right: 16px;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 20px;
+            text-align: center;
+            background-color: #fafafa;
+            border-radius: 20px;
+
+            &.active {
+                color: #fff;
+                background-color: #314659;
+            }
+        }
+
+        .shopName {
+            flex: 1;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    }
+}
