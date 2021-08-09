@@ -38,6 +38,7 @@ const OnlineHot: React.FC<IOnlineHotProps> = (props): React.ReactElement => {
                 dataSource={data && data.list}
                 columns={columns}
                 pagination={{ total: data && data.total }}
+                rowKey="rank"
             ></Table>
         </Card>
     );
