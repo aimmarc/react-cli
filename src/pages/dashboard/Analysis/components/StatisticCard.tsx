@@ -4,7 +4,7 @@ import styles from "./StatisticCard.less";
 
 const StatisticCard: React.FC = (): React.ReactElement => {
     return (
-        <Row gutter={12}>
+        <Row gutter={10}>
             <Col span={6}>
                 <Card>
                     <Statistic
