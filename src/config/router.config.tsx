@@ -26,6 +26,7 @@ import Project from "@/pages/list/search/Project";
 import Application from "@/pages/list/search/Application";
 import StepForm from "@/pages/form/StepForm";
 import AdvancedForm from "@/pages/form/AdvancedForm";
+import UserCenter from "@/pages/user/UserCenter";
 
 export interface IRouter {
     path?: String | any;
@@ -201,6 +202,22 @@ const routerConfig: Array<IRouter> = [
                         path: "/error/500",
                         name: "500",
                         component: ServerError,
+                    },
+                ],
+            },
+            {
+                path: "/user",
+                name: "个人页",
+                icon: "icon-user",
+                routes: [
+                    {
+                        path: "/user",
+                        redirect: "/user/user-center",
+                    },
+                    {
+                        path: "/user/user-center",
+                        name: "个人中心",
+                        component: UserCenter,
                     },
                 ],
             },
