@@ -3,9 +3,17 @@ import { Statistic, Card, Row, Col } from "antd";
 import styles from "./StatisticCard.less";
 
 const StatisticCard: React.FC = (): React.ReactElement => {
+    const span = {
+        xs: 24,
+        md: 12,
+        lg: 6,
+    };
+    const style = {
+        marginBottom: 8,
+    };
     return (
-        <Row gutter={10}>
-            <Col span={6}>
+        <Row gutter={8}>
+            <Col {...span} style={style}>
                 <Card>
                     <Statistic
                         title="总销售额"
@@ -18,7 +26,7 @@ const StatisticCard: React.FC = (): React.ReactElement => {
                     </div>
                 </Card>
             </Col>
-            <Col span={6}>
+            <Col {...span} style={style}>
                 <Card>
                     <Statistic title="访问量" value={8848} />
                     <div className={styles.statisticFooterText}>
@@ -26,7 +34,7 @@ const StatisticCard: React.FC = (): React.ReactElement => {
                     </div>
                 </Card>
             </Col>
-            <Col span={6}>
+            <Col {...span} style={style}>
                 <Card>
                     <Statistic title="支付笔数" value={9010} />
                     <div className={styles.statisticFooterText}>
@@ -34,7 +42,7 @@ const StatisticCard: React.FC = (): React.ReactElement => {
                     </div>
                 </Card>
             </Col>
-            <Col span={6}>
+            <Col {...span} style={style}>
                 <Card>
                     <Statistic title="运营活动效果" value={72} suffix="%" />
                     <div className={styles.statisticFooterText}>

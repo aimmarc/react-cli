@@ -27,7 +27,7 @@ const Analysis: React.FC = (): React.ReactElement => {
         <PageWrapper custom>
             <StatisticCard />
             <Turnover />
-            <Row gutter={8} className="mt-12">
+            <Row gutter={8} className="mt-8">
                 <Col span={12}>
                     <OnlineHot data={rankeList} />
                 </Col>

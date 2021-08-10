@@ -23,7 +23,6 @@ const Turnover: React.FC = (): React.ReactElement => {
 
     return (
         <Card
-            className="mt-12"
             tabList={tabList}
             tabBarExtraContent={optionPane}
         >
