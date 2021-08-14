@@ -5,6 +5,7 @@ import { FormInstance } from "antd/lib/form";
 import Store from "./components/Store";
 import Premission from "./components/Premission";
 import EditTable from "./components/EditTable";
+import { getBackgroundColor } from "@/utils/theme";
 
 class AdvancedForm extends React.PureComponent<{}> {
     state = {
@@ -32,7 +33,7 @@ class AdvancedForm extends React.PureComponent<{}> {
             <PageWrapper custom style={{ paddingBottom: 45 }}>
                 <PageHeader
                     title="高级表单"
-                    style={{ backgroundColor: "#fff" }}
+                    style={{ backgroundColor: getBackgroundColor("#fff", "#141414") }}
                 >
                     高级表单常见于一次性输入和提交大批量数据的场景。
                 </PageHeader>

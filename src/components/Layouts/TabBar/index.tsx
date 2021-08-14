@@ -6,6 +6,7 @@ import { useHistory } from "react-router";
 import { getMenuName, getMenuRoute } from "@/utils/resolveMenuData";
 import { IconFont } from "@/components";
 import { Tabs } from "antd";
+import { getBackgroundColor } from "@/utils/theme";
 const { TabPane } = Tabs;
 
 export type TTabs = {
@@ -91,6 +92,7 @@ const TabBar: React.FC<ITabBarProps> = (props): React.ReactElement => {
                 width: `calc(100% - ${app.collapsed ? 78 : config.menuWidth
                     }px)`,
                 left: app.collapsed ? 79 : config.menuWidth,
+                backgroundColor: getBackgroundColor('#f0f2f5')
             }}
         >
             <Tabs

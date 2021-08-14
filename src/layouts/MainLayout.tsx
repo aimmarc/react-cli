@@ -3,6 +3,7 @@ import { inject, observer } from "mobx-react";
 import React from "react";
 import styles from "./MainLayout.less";
 import { IAppStore } from "@/store/modules/app";
+import { getBackgroundColor } from "@/utils/theme";
 
 interface IProps {
     collapsed: Boolean;
@@ -19,6 +20,7 @@ const MainLayout: React.FC<IProps> = (props: IProps): React.ReactElement => {
             style={{
                 paddingLeft: props.collapsed ? 78 + 8 : config.menuWidth + 8,
                 paddingTop: setting.showTabs ? 96 : 58,
+                backgroundColor: getBackgroundColor("#f0f2f5"),
             }}
         >
             {props.children}
@@ -26,4 +28,4 @@ const MainLayout: React.FC<IProps> = (props: IProps): React.ReactElement => {
     );
 };
 
-export default MainLayout;
+export default inject("app")(observer(MainLayout));

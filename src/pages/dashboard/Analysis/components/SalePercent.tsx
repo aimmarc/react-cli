@@ -65,7 +65,7 @@ const SalePercent: React.FC = (): React.ReactElement => {
     };
 
     return (
-        <Card title="销售额类别占比">
+        <Card title="销售额类别占比" bordered={false}>
             <div id="circle"></div>
         </Card>
     );

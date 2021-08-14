@@ -1,10 +1,12 @@
 import { action, makeAutoObservable } from "mobx";
 import { TTabs } from "@/components/Layouts/TabBar";
 import app from "@/config/app";
+import { switchDarkTheme } from "@/utils/theme";
 
 export interface ISetting {
     showTabs: boolean;
     showFullScreen: boolean;
+    dark: boolean;
 }
 
 export interface IAppStore {
@@ -51,8 +53,12 @@ class App implements IAppStore {
             JSON.stringify({
                 showTabs: app.showTabs,
                 showFullScreen: app.showFullScreen,
+                dark: app.theme === "dark",
             });
-        return JSON.parse(setting);
+        const newSetting = JSON.parse(setting);
+        console.log(newSetting);
+        switchDarkTheme(newSetting.dark);
+        return newSetting;
     }
 
     @action setCollapsed = (collapsed: boolean) => {

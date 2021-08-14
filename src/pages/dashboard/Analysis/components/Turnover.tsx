@@ -25,6 +25,7 @@ const Turnover: React.FC = (): React.ReactElement => {
         <Card
             tabList={tabList}
             tabBarExtraContent={optionPane}
+            bordered={false}
         >
             <Row gutter={80}>
                 <Col span={17}>

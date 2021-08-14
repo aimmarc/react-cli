@@ -9,7 +9,7 @@ import {
 
 const UserInfo: React.FC = (): React.ReactElement => {
     return (
-        <Card>
+        <Card bordered={false}>
             <div className={styles.avatarPane}>
                 <Avatar size={104} style={{ marginBottom: 20 }} alt="A" />
                 <div className={styles.username}>Aimmarc</div>

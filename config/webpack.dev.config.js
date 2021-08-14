@@ -24,8 +24,6 @@ module.exports = merge(webpackBaseConfig, {
         },
     },
 
-    watch: true,
-
     module: {
         rules: [
             {

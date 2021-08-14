@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./index.less";
 import config from "@/config/app";
 import { inject, observer } from "mobx-react";
+import { getBackgroundColor } from "@/utils/theme";
 
 interface IFooterBarProps {
     leftContent?: React.ComponentType<any>;
@@ -16,6 +17,8 @@ const FooterBar: React.FC<IFooterBarProps> = (props): React.ReactElement => {
                 width: `calc(100% - ${
                     props.app.collapsed ? 78 : config.menuWidth
                 }px)`,
+                backgroundColor: getBackgroundColor("#fff", "#141414"),
+                borderTop: `1px solid ${getBackgroundColor("#f0f0f0", "#303030")}`,
             }}
         >
             <div className={styles.leftContent}>{props.leftContent}</div>

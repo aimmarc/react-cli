@@ -14,7 +14,7 @@ const StatisticCard: React.FC = (): React.ReactElement => {
     return (
         <Row gutter={8}>
             <Col {...span} style={style}>
-                <Card>
+                <Card bordered={false}>
                     <Statistic
                         title="总销售额"
                         value={112893}
@@ -27,7 +27,7 @@ const StatisticCard: React.FC = (): React.ReactElement => {
                 </Card>
             </Col>
             <Col {...span} style={style}>
-                <Card>
+                <Card bordered={false}>
                     <Statistic title="访问量" value={8848} />
                     <div className={styles.statisticFooterText}>
                         日访问量：1080
@@ -35,7 +35,7 @@ const StatisticCard: React.FC = (): React.ReactElement => {
                 </Card>
             </Col>
             <Col {...span} style={style}>
-                <Card>
+                <Card bordered={false}>
                     <Statistic title="支付笔数" value={9010} />
                     <div className={styles.statisticFooterText}>
                         转化率：56%
@@ -43,7 +43,7 @@ const StatisticCard: React.FC = (): React.ReactElement => {
                 </Card>
             </Col>
             <Col {...span} style={style}>
-                <Card>
+                <Card bordered={false}>
                     <Statistic title="运营活动效果" value={72} suffix="%" />
                     <div className={styles.statisticFooterText}>
                         运营活动效果：72%

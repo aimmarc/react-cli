@@ -23,7 +23,7 @@ const Premission = forwardRef((_, ref): React.ReactElement => {
     };
 
     return (
-        <Card className="mt-12" title="任务管理">
+        <Card className="mt-12" title="任务管理" bordered={false}>
             <Form layout="vertical" form={form}>
                 <Row gutter={100}>
                     <Col span={8}>

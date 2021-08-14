@@ -3,6 +3,7 @@ import style from "./index.less";
 import { PageHeader, Layout, BackTop } from "antd";
 import { inject, observer } from "mobx-react";
 import { IAppStore } from "@/store/modules/app";
+import { getBackgroundColor } from "@/utils/theme";
 const { Content } = Layout;
 
 interface IProps {
@@ -29,7 +30,7 @@ const PageWrapper: React.FC<IProps> = (props: IProps): React.ReactElement => {
                 minHeight: props.fit
                     ? `calc(100vh - ${setting.showTabs ? 104 : 66}px)`
                     : "auto",
-                backgroundColor: props.bg ? "#fff" : "",
+                backgroundColor: props.bg ? getBackgroundColor("#fff") : "",
                 ...props.style,
             }}
         >

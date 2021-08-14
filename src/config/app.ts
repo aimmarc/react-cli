@@ -9,4 +9,5 @@ export default {
     index: "/dashboard/analysis",
     notTabs: ["/user/login"],
     routerMode: "history", // hash
+    theme: "dark", // light
 };

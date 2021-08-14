@@ -3,6 +3,8 @@ import { PageWrapper } from "@/components";
 import { Col, List, Row, Switch } from "antd";
 import { inject, observer } from "mobx-react";
 import { IAppStore, ISetting } from "@/store/modules/app";
+import { switchDarkTheme } from "@/utils/theme";
+import { useReducer } from "react";
 
 interface ISettingProps {
     app: IAppStore;
@@ -10,6 +12,7 @@ interface ISettingProps {
 
 const Setting: React.FC<ISettingProps> = (props): React.ReactElement => {
     const { setting } = props.app;
+    const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
 
     const handleChange = (key: string, value: boolean) => {
         setting[key] = value;
@@ -44,6 +47,19 @@ const Setting: React.FC<ISettingProps> = (props): React.ReactElement => {
                             }
                         >
                             是否展示全屏按钮
+                        </List.Item>
+                        <List.Item
+                            extra={
+                                <Switch
+                                    defaultChecked={setting.dark}
+                                    onClick={(value) => {
+                                        switchDarkTheme(value);
+                                        handleChange("dark", value);
+                                    }}
+                                />
+                            }
+                        >
+                            暗黑模式
                         </List.Item>
                     </List>
                 </Col>

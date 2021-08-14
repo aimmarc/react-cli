@@ -17,12 +17,12 @@ const Logo: React.FC<IProps> = (props: IProps): React.ReactElement => {
                 alt=""
                 className={style.icon}
             />
-            <h1
+            <div
                 className={style.title}
                 style={{ transform: props.collapsed ? "scale(0)" : "scale(1)" }}
             >
                 {config.projectName}
-            </h1>
+            </div>
         </div>
     );
 };

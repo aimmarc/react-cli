@@ -198,7 +198,7 @@ const EditTable: React.FC = (): React.ReactElement => {
     };
 
     return (
-        <Card className="mt-12" title="成员管理">
+        <Card className="mt-12" title="成员管理" bordered={false}>
             <Table
                 rowKey="id"
                 pagination={false}

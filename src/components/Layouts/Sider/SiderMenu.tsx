@@ -139,6 +139,7 @@ const SiderMenu: React.FC<IProps> = (props: IProps): React.ReactElement => {
             onSelect={onSelect}
             selectedKeys={selectedKeys}
             inlineCollapsed={collapsed}
+            style={{ borderRight: 0 }}
         >
             {menuData.map(
                 (item: IRouter) =>
