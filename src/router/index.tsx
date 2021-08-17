@@ -7,11 +7,9 @@
  */
 import React, { ComponentType, memo } from "react";
 import {
-    HashRouter,
     Router,
     Switch,
     Redirect,
-    BrowserRouter,
     RouteComponentProps,
 } from "react-router-dom";
 import routerConfig, { IRouter } from "../config/router.config";
