@@ -5,6 +5,7 @@ import { CollapseForm } from "@/components";
 import { injectModel } from "@/models";
 import EditModal from "./components/EditModal";
 import { IListPageResponse } from "@/utils/api/httpResponse";
+import { history } from "@/router";
 
 const FormItem = Form.Item;
 
@@ -50,7 +51,12 @@ class TableList extends React.Component<{}, ITableListState> {
             render: () => (
                 <React.Fragment>
                     <Button type="link">配置</Button>
-                    <Button type="link">订阅报警</Button>
+                    <Button
+                        type="link"
+                        onClick={() => history.push("/list/table/detail?id=000")}
+                    >
+                        订阅报警
+                    </Button>
                 </React.Fragment>
             ),
         },

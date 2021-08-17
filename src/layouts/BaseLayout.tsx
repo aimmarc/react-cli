@@ -7,9 +7,11 @@ import { observer, inject } from "mobx-react";
 import { useHistory } from "react-router";
 import MainLayout from "./MainLayout";
 import { IAppStore } from "@/store/modules/app";
+import { IUserStore } from "@/store/modules/user";
 
 interface IBaseLayoutProps {
     app: IAppStore;
+    user: IUserStore;
 }
 
 /**
@@ -18,7 +20,7 @@ interface IBaseLayoutProps {
  * @returns
  */
 const BaseLayout: React.FC<IBaseLayoutProps> = (props): React.ReactElement => {
-    const { app } = props;
+    const { app, user } = props;
     const { setting } = app;
     const menuData = resolveMenuData(routerConfig);
     const history = useHistory();
@@ -28,6 +30,7 @@ const BaseLayout: React.FC<IBaseLayoutProps> = (props): React.ReactElement => {
     };
 
     const onLogout = () => {
+        user.logout();
         history.replace(`/user/login?redirectUrl=${location.href}`);
     };
 
@@ -48,4 +51,4 @@ const BaseLayout: React.FC<IBaseLayoutProps> = (props): React.ReactElement => {
     );
 };
 
-export default inject("app")(observer(BaseLayout));
+export default inject("app", "user")(observer(BaseLayout));

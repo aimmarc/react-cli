@@ -8,6 +8,6 @@ export default {
     showFullScreen: true,
     index: "/dashboard/analysis",
     notTabs: ["/user/login"],
-    routerMode: "history", // hash
+    routerMode: "history", // history,hash
     theme: "dark", // light
 };

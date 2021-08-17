@@ -51,6 +51,8 @@ module.exports = {
         ],
     },
 
+    ignoreWarnings: [/Failed to parse source map/],
+
     plugins: [
         new HtmlWebpackPlugin({
             title: "Development",

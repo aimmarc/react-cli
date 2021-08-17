@@ -56,7 +56,6 @@ class App implements IAppStore {
                 dark: app.theme === "dark",
             });
         const newSetting = JSON.parse(setting);
-        console.log(newSetting);
         switchDarkTheme(newSetting.dark);
         return newSetting;
     }

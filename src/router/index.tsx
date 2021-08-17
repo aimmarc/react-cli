@@ -8,7 +8,7 @@
 import React, { ComponentType, memo } from "react";
 import {
     HashRouter,
-    Route,
+    Router,
     Switch,
     Redirect,
     BrowserRouter,
@@ -17,6 +17,7 @@ import {
 import routerConfig, { IRouter } from "../config/router.config";
 import config from "../config/app";
 import { createHashHistory, createBrowserHistory } from "history";
+import BasicRouter from "./BasicRouter";
 
 /**
  * 生成路由
@@ -41,14 +42,14 @@ const mapRoutes = (routes: Array<IRouter>) =>
         }
 
         return !!item.redirect ? (
-            <Route
+            <BasicRouter
                 exact
                 path={item.path}
                 render={() => <Redirect to={item.redirect} />}
                 key={index}
             />
         ) : (
-            <Route
+            <BasicRouter
                 exact={!item.routes}
                 path={item.path}
                 component={component}
@@ -56,26 +57,19 @@ const mapRoutes = (routes: Array<IRouter>) =>
             />
         );
     });
-
-/**
- * 路由组件
- * @returns
- */
-const BasicRoute = () =>
-    config.routerMode === "history" ? (
-        <BrowserRouter>
-            <Switch>{mapRoutes(routerConfig)}</Switch>
-        </BrowserRouter>
-    ) : (
-        <HashRouter>
-            <Switch>{mapRoutes(routerConfig)}</Switch>
-        </HashRouter>
-    );
-
 const history =
     config.routerMode === "history"
         ? createBrowserHistory()
         : createHashHistory();
+/**
+ * 路由组件
+ * @returns
+ */
+const BasicRoute = () => (
+    <Router history={history}>
+        <Switch>{mapRoutes(routerConfig)}</Switch>
+    </Router>
+);
 
 export { history };
 

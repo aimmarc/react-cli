@@ -27,6 +27,7 @@ import Application from "@/pages/list/search/Application";
 import StepForm from "@/pages/form/StepForm";
 import AdvancedForm from "@/pages/form/AdvancedForm";
 import UserCenter from "@/pages/user/UserCenter";
+import TableDetail from "@/pages/list/TableList/Detail";
 
 export interface IRouter {
     path?: String | any;
@@ -37,6 +38,7 @@ export interface IRouter {
     icon?: string;
     exact?: boolean;
     cache?: boolean;
+    hideOnMenu?: boolean;
 }
 
 const routerConfig: Array<IRouter> = [
@@ -136,6 +138,12 @@ const routerConfig: Array<IRouter> = [
                         path: "/list/table",
                         name: "查询表格",
                         component: TableList,
+                    },
+                    {
+                        path: "/list/table/detail",
+                        name: "表格详情",
+                        hideOnMenu: true,
+                        component: TableDetail,
                     },
                     {
                         path: "/list/basicList",

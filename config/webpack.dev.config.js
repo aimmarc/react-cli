@@ -2,6 +2,7 @@ const theme = require("./theme");
 const webpackBaseConfig = require("./webpack.base.config");
 const merge = require("webpack-merge");
 const proxy = require("./proxy");
+const webpack = require("webpack");
 
 module.exports = merge(webpackBaseConfig, {
     mode: "development",
@@ -12,7 +13,7 @@ module.exports = merge(webpackBaseConfig, {
         port: 3000,
         progress: true,
         hot: true,
-        compress: true,
+        compress: false,
         proxy: proxy,
         historyApiFallback: {
             rewrites: [
@@ -73,4 +74,11 @@ module.exports = merge(webpackBaseConfig, {
             },
         ],
     },
+    
+    devtool: false,
+
+    plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.SourceMapDevToolPlugin({}),
+    ],
 });

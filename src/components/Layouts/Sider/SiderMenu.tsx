@@ -87,7 +87,12 @@ const SiderMenu: React.FC<IProps> = (props: IProps): React.ReactElement => {
                     </Menu.SubMenu>
                 );
             }
-            if (!item.redirect && item.component && item.path) {
+            if (
+                !item.redirect &&
+                item.component &&
+                item.path &&
+                !item.hideOnMenu
+            ) {
                 return (
                     <Menu.Item
                         key={item.path}
