@@ -15,7 +15,7 @@ import {
 import routerConfig, { IRouter } from "../config/router.config";
 import config from "../config/app";
 import { createHashHistory, createBrowserHistory } from "history";
-import BasicRouter from "./BasicRouter";
+import BasicRoute from "./BasicRoute";
 
 /**
  * 生成路由
@@ -40,14 +40,14 @@ const mapRoutes = (routes: Array<IRouter>) =>
         }
 
         return !!item.redirect ? (
-            <BasicRouter
+            <BasicRoute
                 exact
                 path={item.path}
                 render={() => <Redirect to={item.redirect} />}
                 key={index}
             />
         ) : (
-            <BasicRouter
+            <BasicRoute
                 exact={!item.routes}
                 path={item.path}
                 component={component}

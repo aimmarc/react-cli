@@ -3,16 +3,14 @@ import { Route, RouteProps, Redirect } from "react-router-dom";
 import { inject, observer } from "mobx-react";
 import { IUserStore } from "@/store/modules/user";
 
-interface IBasicRouterProps extends RouteProps {
+interface IBasicRouteProps extends RouteProps {
     user?: IUserStore;
 }
 
-const BasicRouter: React.FC<IBasicRouterProps> = (
-    props
-): React.ReactElement => {
+const BasicRoute: React.FC<IBasicRouteProps> = (props): React.ReactElement => {
     const { user } = props;
     const isLogin = user?.userInfo?.isLogin || false;
-    
+
     return isLogin || props.path === "/user/login" ? (
         <Route {...props} />
     ) : (
@@ -20,4 +18,4 @@ const BasicRouter: React.FC<IBasicRouterProps> = (
     );
 };
 
-export default inject("user")(observer(BasicRouter));
+export default inject("user")(observer(BasicRoute));
