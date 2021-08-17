@@ -1,8 +1,8 @@
 import * as React from "react";
-import BasicRoute from "./router";
+import RouterComponent from "./router";
 
 const App: React.FC<{}> = (): React.ReactElement => {
-    return <BasicRoute />;
+    return <RouterComponent />;
 };
 
 export default App;

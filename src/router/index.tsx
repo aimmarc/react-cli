@@ -63,7 +63,7 @@ const history =
  * 路由组件
  * @returns
  */
-const BasicRoute = () => (
+const RouterComponent = () => (
     <Router history={history}>
         <Switch>{mapRoutes(routerConfig)}</Switch>
     </Router>
@@ -71,4 +71,4 @@ const BasicRoute = () => (
 
 export { history };
 
-export default memo(BasicRoute);
+export default memo(RouterComponent);
