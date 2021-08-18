@@ -1,5 +1,6 @@
 import { action, makeAutoObservable } from "mobx";
 import { TTabs } from "@/components/Layouts/TabBar";
+import { USER_INFO } from "@/utils/constants/storage";
 
 export interface IUserInfo {
     username: string;
@@ -20,8 +21,7 @@ export interface IUserStore {
 class User implements IUserStore {
     tabs: TTabs[] = [];
     collapsed: boolean = false;
-    userInfo: IUserInfo =
-        this.getDefaultUserInfo();
+    userInfo: IUserInfo = this.getDefaultUserInfo();
 
     constructor() {
         makeAutoObservable(this);
@@ -33,7 +33,7 @@ class User implements IUserStore {
      */
     getDefaultUserInfo(): IUserInfo {
         const userInfo: IUserInfo = JSON.parse(
-            sessionStorage.getItem("USER_INFO") ||
+            sessionStorage.getItem(USER_INFO) ||
                 JSON.stringify({
                     username: "",
                     isLogin: false,
@@ -48,10 +48,7 @@ class User implements IUserStore {
      */
     @action login = (userInfo: IUserInfo) => {
         this.userInfo = userInfo;
-        sessionStorage.setItem(
-            "USER_INFO",
-            JSON.stringify(userInfo)
-        );
+        sessionStorage.setItem(USER_INFO, JSON.stringify(userInfo));
     };
 
     /**
@@ -62,7 +59,7 @@ class User implements IUserStore {
             username: "",
             isLogin: false,
         };
-        sessionStorage.removeItem("USER_INFO");
+        sessionStorage.removeItem(USER_INFO);
     };
 }
 

@@ -9,6 +9,7 @@ import { getQueryVariable } from "@/utils/common";
 import { inject, observer } from "mobx-react";
 import { IUserStore } from "@/store/modules/user";
 import { IBaseResponse } from "@/utils/api/httpResponse";
+import { getBackgroundColor } from "@/utils/theme";
 
 interface ILoginProps {
     user: IUserStore;
@@ -52,11 +53,20 @@ const Login: React.FC<ILoginProps> = (props): React.ReactElement => {
     };
 
     return (
-        <div className={styles.login}>
+        <div
+            className={styles.login}
+            style={{ backgroundColor: getBackgroundColor("#f0f2f5") }}
+        >
             <div className={styles.loginPanel}>
                 <div className={styles.logoPanel}>
                     <Logo />
-                    <p>不以物喜，不以己悲</p>
+                    <p
+                        style={{
+                            color: getBackgroundColor("#000", "#fff"),
+                        }}
+                    >
+                        不以物喜，不以己悲
+                    </p>
                 </div>
                 <Form
                     name="basic"
