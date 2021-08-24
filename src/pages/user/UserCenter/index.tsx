@@ -8,10 +8,10 @@ const UserCenter: React.FC = (): React.ReactElement => {
     return (
         <PageWrapper custom>
             <Row gutter={8}>
-                <Col span={7}>
+                <Col style={{ width: 400 }}>
                     <UserInfo />
                 </Col>
-                <Col span={17}>
+                <Col flex={1}>
                     <ListInfo />
                 </Col>
             </Row>
