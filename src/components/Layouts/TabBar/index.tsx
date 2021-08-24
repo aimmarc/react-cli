@@ -60,11 +60,11 @@ const TabBar: React.FC<ITabBarProps> = (props): React.ReactElement => {
 
     /**
      * 处理激活
-     * @param pathname 
-     * @param search 
-     * @returns 
+     * @param pathname
+     * @param search
+     * @returns
      */
-    const resolveTabs = (pathname: string, search: string) => {
+    const resolveTabs = (pathname: string, search: string = "") => {
         if (config.notTabs.includes(pathname)) {
             return;
         }
@@ -86,8 +86,8 @@ const TabBar: React.FC<ITabBarProps> = (props): React.ReactElement => {
 
     /**
      * change
-     * @param key 
-     * @returns 
+     * @param key
+     * @returns
      */
     const handleChangeTab = (key: any) => {
         if (app?.activeTab === key) {
@@ -99,7 +99,7 @@ const TabBar: React.FC<ITabBarProps> = (props): React.ReactElement => {
 
     /**
      * remove
-     * @param key 
+     * @param key
      */
     const handleRemove = (key: any) => {
         const array = JSON.parse(JSON.stringify(app?.tabs))?.filter(

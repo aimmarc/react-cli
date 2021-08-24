@@ -79,7 +79,7 @@ const Login: React.FC<ILoginProps> = (props): React.ReactElement => {
                         rules={[
                             {
                                 required: true,
-                                message: "Please input your username!",
+                                message: "请输入用户名",
                             },
                         ]}
                     >
@@ -90,14 +90,14 @@ const Login: React.FC<ILoginProps> = (props): React.ReactElement => {
                         rules={[
                             {
                                 required: true,
-                                message: "Please input your password!",
+                                message: "请输入密码",
                             },
                         ]}
                     >
                         <Input.Password allowClear size="large" />
                     </Form.Item>
                     <Form.Item name="remember" valuePropName="checked">
-                        <Checkbox>Remember me</Checkbox>
+                        <Checkbox>记住我</Checkbox>
                     </Form.Item>
                     <Form.Item>
                         <Button
