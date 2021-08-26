@@ -32,7 +32,7 @@ const OnlineHot: React.FC<IOnlineHotProps> = (props): React.ReactElement => {
     const { data } = props;
 
     return (
-        <Card title="线上热门搜索" bordered={false}>
+        <Card title="线上热门搜索" bordered={false} style={{ height: 400 }}>
             <Table
                 size="small"
                 dataSource={data && data.list}

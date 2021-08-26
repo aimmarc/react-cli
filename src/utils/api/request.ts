@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import axios from "axios";
 import config from "@/config/app";
 import interceptors from "./interceptors";
 

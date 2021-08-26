@@ -5,6 +5,6 @@ import BaseService from "../base/baseService";
  */
 export default class UserService extends BaseService {
     login = (body?: Object) => {
-        return this.api.post("/api/user/login", body);
+        return this.api.post("/user/login", body);
     };
 }

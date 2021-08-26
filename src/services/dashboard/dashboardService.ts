@@ -3,10 +3,10 @@ import BaseService from "../base/baseService";
 class DashboardService extends BaseService {
     inject = true;
 
-    rankList = async () => {
-        const { data } = await this.api.get(`/api/dashboard/rankList`);
+    async rankList() {
+        const { data } = await this.api.get(`/dashboard/rankList`);
         return data;
-    };
+    }
 }
 
 export default DashboardService;

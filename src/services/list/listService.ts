@@ -5,7 +5,7 @@ class ListService extends BaseService {
     inject = true;
 
     async table(params: any) {
-        const { data } = await this.api.get(`/api/list/table?${stringify(params)}`);
+        const { data } = await this.api.get(`/list/table?${stringify(params)}`);
         return data;
     }
 }
