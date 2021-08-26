@@ -71,4 +71,4 @@ const RouterComponent = () => (
 
 export { history };
 
-export default memo(RouterComponent);
+export default RouterComponent;
