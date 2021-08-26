@@ -130,6 +130,7 @@ const TabBar: React.FC<ITabBarProps> = (props): React.ReactElement => {
                 onChange={handleChangeTab}
                 onEdit={handleRemove}
                 hideAdd
+                size="small"
             >
                 {app?.tabs.map((item: TTabs, index: Number) => (
                     <TabPane

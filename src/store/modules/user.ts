@@ -5,6 +5,8 @@ import { USER_INFO } from "@/utils/constants/storage";
 export interface IUserInfo {
     username: string;
     isLogin: boolean;
+    role: string | string[];
+    avatar: string;
 }
 
 export interface IUserStore {
@@ -58,6 +60,8 @@ class User implements IUserStore {
         this.userInfo = {
             username: "",
             isLogin: false,
+            role: "",
+            avatar: "",
         };
         sessionStorage.removeItem(USER_INFO);
     };

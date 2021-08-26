@@ -16,13 +16,17 @@ import {
     isFullscreenEnabled,
 } from "@/utils/common";
 import { useHistory } from "react-router-dom";
+import { inject, observer } from "mobx-react";
+import { IUserStore } from "@/store/modules/user";
 
 interface IProps {
     onLogout: any;
     showFullScreen: boolean;
+    user?: IUserStore;
 }
 
 const Operate: React.FC<IProps> = (props: IProps): React.ReactElement => {
+    const { user } = props;
     const [full, setFull] = useState(false);
     const history = useHistory();
 
@@ -90,8 +94,13 @@ const Operate: React.FC<IProps> = (props: IProps): React.ReactElement => {
             <div className={style.user}>
                 <Dropdown overlay={menu} trigger={["click"]}>
                     <span onClick={(e) => e.preventDefault()}>
-                        <Avatar style={{ margin: "0 5px" }}>A</Avatar> Admin{" "}
-                        <CaretDownOutlined />
+                        <Avatar
+                            style={{ margin: "0 5px" }}
+                            src={user?.userInfo.avatar}
+                        >
+                            A
+                        </Avatar>{" "}
+                        Admin <CaretDownOutlined />
                     </span>
                 </Dropdown>
             </div>
@@ -99,4 +108,4 @@ const Operate: React.FC<IProps> = (props: IProps): React.ReactElement => {
     );
 };
 
-export default Operate;
+export default inject("user")(observer(Operate));

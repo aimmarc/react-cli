@@ -6,6 +6,8 @@ export const login = (req: any, res: any) => {
             message: "成功",
             data: {
                 username: "❤️aimmarc",
+                avatar: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+                role: "admin",
             },
         };
     } else {
