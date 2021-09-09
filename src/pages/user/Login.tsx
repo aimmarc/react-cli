@@ -83,7 +83,11 @@ const Login: React.FC<ILoginProps> = (props): React.ReactElement => {
                             },
                         ]}
                     >
-                        <Input allowClear size="large" />
+                        <Input
+                            placeholder="请输入用户名"
+                            allowClear
+                            size="large"
+                        />
                     </Form.Item>
                     <Form.Item
                         name="password"
@@ -94,7 +98,11 @@ const Login: React.FC<ILoginProps> = (props): React.ReactElement => {
                             },
                         ]}
                     >
-                        <Input.Password allowClear size="large" />
+                        <Input.Password
+                            placeholder="请输入密码"
+                            allowClear
+                            size="large"
+                        />
                     </Form.Item>
                     <Form.Item name="remember" valuePropName="checked">
                         <Checkbox>记住我</Checkbox>
