@@ -1,6 +1,6 @@
-const apiPrefix = {
+const API_PREFIX = {
     development: "/api",
     production: "https://target-to-api.com/api",
 };
 
-export { apiPrefix };
+export default API_PREFIX;

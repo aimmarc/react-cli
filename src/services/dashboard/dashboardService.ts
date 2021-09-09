@@ -1,12 +1,12 @@
-import BaseService from "../base/baseService";
+import request from "@/utils/api/request";
 
-class DashboardService extends BaseService {
-    inject = true;
-
-    async rankList() {
-        const { data } = await this.api.get(`/dashboard/rankList`);
-        return data;
-    }
+/**
+ * 排行列表
+ * @returns
+ */
+async function rankList() {
+    const { data } = await request.get(`/dashboard/rankList`);
+    return data;
 }
 
-export default DashboardService;
+export { rankList };

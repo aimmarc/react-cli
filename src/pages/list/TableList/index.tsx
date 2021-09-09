@@ -2,10 +2,10 @@ import React from "react";
 import { PageWrapper } from "@/components";
 import { Input, Form, DatePicker, Button, Table, Badge, message } from "antd";
 import { CollapseForm } from "@/components";
-import { injectModel } from "@/models";
 import EditModal from "./components/EditModal";
 import { IListPageResponse } from "@/utils/api/httpResponse";
 import { history } from "@/router";
+import { listService } from "@/services";
 
 const FormItem = Form.Item;
 
@@ -53,7 +53,9 @@ class TableList extends React.Component<{}, ITableListState> {
                     <Button type="link">配置</Button>
                     <Button
                         type="link"
-                        onClick={() => history.push("/list/table/detail?id=000")}
+                        onClick={() =>
+                            history.push("/list/table/detail?id=000")
+                        }
                     >
                         订阅报警
                     </Button>
@@ -91,7 +93,7 @@ class TableList extends React.Component<{}, ITableListState> {
         this.setState({
             loading: true,
         });
-        const res: IListPageResponse = await injectModel.listService
+        const res: IListPageResponse = await listService
             .table(this.queryParams)
             .catch(() => this.setState({ loading: false }));
         const { code, data } = res;

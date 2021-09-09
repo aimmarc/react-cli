@@ -3,10 +3,10 @@ import { PageWrapper } from "@/components";
 import StatisticCard from "./components/StatisticCard";
 import OnlineHot from "./components/OnlineHot";
 import { Row, Col } from "antd";
-import { injectModel } from "@/models";
 import { IListPageResponse } from "@/utils/api/httpResponse";
 import SalePercent from "./components/SalePercent";
 import Turnover from "./components/Turnover";
+import { dashboardService } from "@/services";
 
 const Analysis: React.FC = (): React.ReactElement => {
     const [rankeList, setRankList]: [{ list?: any[]; total?: number }, any] =
@@ -16,8 +16,7 @@ const Analysis: React.FC = (): React.ReactElement => {
     }, []);
 
     const init = async () => {
-        const data: IListPageResponse =
-            await injectModel.dashboardService.rankList();
+        const data: IListPageResponse = await dashboardService.rankList();
         if (data.code === 0) {
             setRankList(data.data);
         }

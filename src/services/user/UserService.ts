@@ -1,10 +1,7 @@
-import BaseService from "../base/baseService";
+import request from "@/utils/api/request";
 
-/**
- * 用户服务
- */
-export default class UserService extends BaseService {
-    login = (body?: Object) => {
-        return this.api.post("/user/login", body);
-    };
+async function login(body?: Object) {
+    return request.post("/user/login", body);
 }
+
+export { login };

@@ -1,8 +1,10 @@
 /**
- * storage key
+ * storage enum
  */
-const USER_INFO = "USER_INFO";
-const TABS_DATA = "TABS_DATA";
-const SETTING_DATA = "SETTING_DATA";
+enum StorageEnum {
+    USER_INFO = "USER_INFO",
+    TABS_DATA = "TABS_DATA",
+    SETTING_DATA = "SETTING_DATA",
+}
 
-export { USER_INFO, TABS_DATA, SETTING_DATA };
+export default StorageEnum;

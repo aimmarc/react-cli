@@ -2,7 +2,7 @@ import { action, makeAutoObservable } from "mobx";
 import { TTabs } from "@/components/Layouts/TabBar";
 import app from "@/config/app";
 import { switchDarkTheme } from "@/utils/theme";
-import { SETTING_DATA, TABS_DATA } from "@/utils/constants/storage";
+import StorageEnum from "@/utils/constants/storage";
 
 export interface ISetting {
     showTabs: boolean;
@@ -44,13 +44,13 @@ class App implements IAppStore {
      * @returns
      */
     getTabsData() {
-        const tabsData = localStorage.getItem(TABS_DATA) || "[]";
+        const tabsData = localStorage.getItem(StorageEnum.TABS_DATA) || "[]";
         return JSON.parse(tabsData);
     }
 
     getSettingData() {
         const setting =
-            localStorage.getItem("SETTING_DATA") ||
+            localStorage.getItem(StorageEnum.SETTING_DATA) ||
             JSON.stringify({
                 showTabs: app.showTabs,
                 showFullScreen: app.showFullScreen,
@@ -67,7 +67,7 @@ class App implements IAppStore {
 
     @action setTabs = (tabs: any[]) => {
         this.tabs = tabs;
-        localStorage.setItem(TABS_DATA, JSON.stringify(tabs));
+        localStorage.setItem(StorageEnum.TABS_DATA, JSON.stringify(tabs));
     };
 
     /**
@@ -92,7 +92,7 @@ class App implements IAppStore {
      */
     @action setSetting = (setting: ISetting) => {
         this.setting = setting;
-        localStorage.setItem(SETTING_DATA, JSON.stringify(setting));
+        localStorage.setItem(StorageEnum.SETTING_DATA, JSON.stringify(setting));
     };
 }
 
