@@ -23,8 +23,9 @@ export interface IListPageResponse extends IBaseResponse {
  * @returns
  */
 export function getResponse(response: IBaseResponse): IBaseResponse {
+    const code = 0;
     const ret: IBaseResponse = {
-        code: response.code || 0,
+        code: response.code || code,
         data: response.data || null,
         message: response.message || "",
     };
@@ -33,11 +34,12 @@ export function getResponse(response: IBaseResponse): IBaseResponse {
 
 /**
  * 获取异常返回
- * @param error 
+ * @param error
  */
 export function getFailResponse(error: IBaseResponse) {
     const ret: IBaseResponse = {
         code: error.code || -1,
-        message: error.message || '未知异常'
-    }
+        message: error.message || "未知异常",
+    };
+    return ret;
 }
