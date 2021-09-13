@@ -10,4 +10,5 @@ export default {
     notTabs: ["/user/login"],
     routerMode: "history", // history,hash
     theme: "dark", // light
+    successCode: 0,
 };

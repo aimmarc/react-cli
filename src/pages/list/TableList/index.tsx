@@ -93,15 +93,12 @@ class TableList extends React.Component<{}, ITableListState> {
         this.setState({
             loading: true,
         });
-        const res: IListPageResponse = await listService
+        const data = await listService
             .table(this.queryParams)
             .catch(() => this.setState({ loading: false }));
-        const { code, data } = res;
-        if (code === 0) {
-            this.setState({
-                tableData: data,
-            });
-        }
+        this.setState({
+            tableData: data,
+        });
         this.setState({ loading: false });
     };
 

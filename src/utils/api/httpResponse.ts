@@ -1,3 +1,5 @@
+import config from "@/config/app";
+
 /**
  * 一般返回
  */
@@ -23,7 +25,7 @@ export interface IListPageResponse extends IBaseResponse {
  * @returns
  */
 export function getResponse(response: IBaseResponse): IBaseResponse {
-    const code = 0;
+    const code = config.successCode;
     const ret: IBaseResponse = {
         code: response.code || code,
         data: response.data || null,

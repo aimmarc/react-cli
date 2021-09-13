@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Table } from "antd";
-import { ColumnsType } from "_antd@4.16.9@antd/lib/table/interface";
+import { ColumnsType } from "antd/lib/table/interface";
 
 interface IOnlineHotProps {
     data: {

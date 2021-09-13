@@ -17,9 +17,7 @@ const Analysis: React.FC = (): React.ReactElement => {
 
     const init = async () => {
         const data: IListPageResponse = await dashboardService.rankList();
-        if (data.code === 0) {
-            setRankList(data.data);
-        }
+        setRankList(data);
     };
 
     return (

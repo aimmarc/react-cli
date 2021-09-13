@@ -26,16 +26,17 @@ const Login: React.FC<ILoginProps> = (props): React.ReactElement => {
     const { loading, run } = useRequest(userService.login, {
         manual: true,
         onSuccess: (ret: IBaseResponse) => {
-            if (ret.data.code === 0) {
+            console.log(ret)
+            if (ret.code === 0) {
                 const redirectUrl = getQueryVariable("redirectUrl");
-                user.login({ ...ret.data.data, isLogin: true });
+                user.login({ ...ret.data, isLogin: true });
                 if (redirectUrl) {
                     location.href = redirectUrl;
                     return;
                 }
                 history.replace("/");
             } else {
-                message.error(ret.data.message);
+                message.error(ret.message);
             }
         },
     });
