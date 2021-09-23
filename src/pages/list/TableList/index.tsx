@@ -54,7 +54,7 @@ class TableList extends React.Component<{}, ITableListState> {
                     <Button
                         type="link"
                         onClick={() =>
-                            history.push("/list/table/detail?id=000")
+                            history.push(`/list/table/detail?id=${Math.floor(Math.random() * 10000)}`)
                         }
                     >
                         订阅报警
