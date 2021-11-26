@@ -16,6 +16,7 @@ import routerConfig, { IRouter } from "../config/router.config";
 import config from "../config/app";
 import { createHashHistory, createBrowserHistory } from "history";
 import BasicRoute from "./BasicRoute";
+import asyncComponent from './AsyncComponent';
 
 /**
  * 生成路由
@@ -36,9 +37,9 @@ const mapRoutes = (routes: Array<IRouter>) =>
                 </Wrapper>
             );
         } else {
-            component = item.component;
+            component = asyncComponent(() => import('@/pages/list/TableList'));// item.component;
         }
-
+        console.log('component', component);
         return !!item.redirect ? (
             <BasicRoute
                 exact
