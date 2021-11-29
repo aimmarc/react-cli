@@ -17,6 +17,7 @@ import config from "../config/app";
 import { createHashHistory, createBrowserHistory } from "history";
 import BasicRoute from "./BasicRoute";
 import asyncComponent from './AsyncComponent';
+import TableList from "@/pages/list/TableList";
 
 /**
  * 生成路由
@@ -30,16 +31,18 @@ const mapRoutes = (routes: Array<IRouter>) =>
             | ComponentType<any>
             | undefined;
         if (item.routes) {
-            const Wrapper: any = item.component || React.Fragment;
+            const Wrapper: any = typeof item.component === 'string' ?
+                (asyncComponent(() => import(`@/${item.component}`)) || React.Fragment) : (item.component || React.Fragment);
             component = () => (
                 <Wrapper>
                     <Switch>{mapRoutes(item.routes || [])}</Switch>
                 </Wrapper>
             );
         } else {
-            component = asyncComponent(() => import('@/pages/list/TableList'));// item.component;
+            component = typeof item.component === 'string'
+                ? asyncComponent(() => import(`@/${item.component}`)) : item.component;
         }
-        console.log('component', component);
+
         return !!item.redirect ? (
             <BasicRoute
                 exact
@@ -56,6 +59,7 @@ const mapRoutes = (routes: Array<IRouter>) =>
             />
         );
     });
+
 const history =
     config.routerMode === "history"
         ? createBrowserHistory()
@@ -66,7 +70,9 @@ const history =
  */
 const RouterComponent = () => (
     <Router history={history}>
-        <Switch>{mapRoutes(routerConfig)}</Switch>
+        <Switch>
+            {mapRoutes(routerConfig)}
+        </Switch>
     </Router>
 );
 

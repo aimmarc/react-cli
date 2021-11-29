@@ -2,6 +2,7 @@ const path = require("path");
 const tsImportPluginFactory = require("ts-import-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
+const friendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -13,6 +14,8 @@ module.exports = {
         filename: "js/[name].bundle.[hash:8].js",
         path: path.resolve(__dirname, "../dist"),
     },
+
+    stats: 'errors-only',
 
     module: {
         rules: [
@@ -63,6 +66,7 @@ module.exports = {
         new webpack.DefinePlugin({
             "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
         }),
+        new friendlyErrorsWebpackPlugin()
     ],
 
     resolve: {

@@ -1,24 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { LoaderModule } from 'webpack';
+import { Spin } from 'antd'
 
-const asyncComponent = (load: () => void) => (
-    (props: any): React.ReactElement | null => {
-        const [Component, setComponent]: [any, any] = useState(null);
+type AsyncComponentState = {
+    Component: any
+}
 
-        useEffect(() => {
-            loadComponent();
-        }, [])
+const asyncComponent = (load: () => Promise<any>) => (
+    class AsyncComponent extends React.Component<any, AsyncComponentState> {
+        state: AsyncComponentState = { Component: null };
 
-        async function loadComponent() {
-            load().then(module => module.default).then((Component: any) => {
-                console.log('Component', Component);
-                setComponent(Component);
+        componentDidMount() {
+            this.loadComponent();
+        }
+
+        loadComponent = () => {
+            load().then((module: LoaderModule) => {
+                this.setState({
+                    Component: module.default
+                });
+            }).catch(err => {
+                this.setState({
+                    Component: null
+                })
             })
         }
 
-        console.log('props',props);
-        return (
-            Component ? <Component {...props} /> : null
-        )
+        render() {
+            const { Component } = this.state;
+            return (
+                Component ? <Component {...this.props} /> : <Spin style={{ width: "100%", marginTop: 200 }} tip="加载中..." />
+            )
+        }
     }
 )
 

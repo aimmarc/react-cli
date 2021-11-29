@@ -7,7 +7,7 @@ export default {
     showTabs: true,
     showFullScreen: true,
     index: "/dashboard/analysis",
-    notTabs: ["/user/login"],
+    notTabs: ["/user/login", "/test/test", "/test/test1"],
     routerMode: "history", // history,hash
     theme: "dark", // light
     successCode: 0,

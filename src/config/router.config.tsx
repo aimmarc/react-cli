@@ -7,31 +7,10 @@
 import { ComponentType } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import History from "history";
-import Detail from "@/pages/detail/BasicDetail";
-import NotFound from "@/pages/404";
-import BaseLayout from "@/layouts/BaseLayout";
-import Login from "@/pages/user/Login";
-import Analysis from "@/pages/dashboard/Analysis";
-import BaseForm from "@/pages/form/BaseForm";
-import Article from "@/pages/list/search/Article";
-import Setting from "@/pages/common/Setting";
-import TableList from "@/pages/list/TableList";
-import BasicList from "@/pages/list/BasicList";
-import CardList from "@/pages/list/CardList";
-import AdvancedDetail from "@/pages/detail/AdvancedDetail";
-import NotAccess from "@/pages/403";
-import ServerError from "@/pages/500";
-import SearchWrapper from "@/pages/list/search/SearchWrapper";
-import Project from "@/pages/list/search/Project";
-import Application from "@/pages/list/search/Application";
-import StepForm from "@/pages/form/StepForm";
-import AdvancedForm from "@/pages/form/AdvancedForm";
-import UserCenter from "@/pages/user/UserCenter";
-import TableDetail from "@/pages/list/TableList/Detail";
 
 export interface IRouter {
     path?: String | any;
-    component?: ComponentType<RouteComponentProps<any>> | ComponentType<any>;
+    component?: ComponentType<RouteComponentProps<any>> | ComponentType<any> | string;
     redirect?: History.LocationDescriptor | String | any;
     routes?: Array<IRouter>;
     name?: string;
@@ -45,11 +24,11 @@ const routerConfig: Array<IRouter> = [
     {
         path: "/user/login",
         cache: false,
-        component: Login,
+        component: "pages/user/Login",
     },
     {
         path: "/",
-        component: BaseLayout,
+        component: "layouts/BaseLayout",
         routes: [
             {
                 path: "/",
@@ -62,11 +41,11 @@ const routerConfig: Array<IRouter> = [
                 routes: [
                     {
                         path: "/dashboard/analysis",
-                        component: Analysis,
+                        component: "pages/dashboard/Analysis",
                         name: "分析页",
                     },
                     {
-                        component: NotFound,
+                        component: "pages/404",
                     },
                 ],
             },
@@ -81,21 +60,21 @@ const routerConfig: Array<IRouter> = [
                     },
                     {
                         path: "/form/base-form",
-                        component: BaseForm,
+                        component: "pages/form/BaseForm",
                         name: "基础表单",
                     },
                     {
                         path: "/form/step-form",
-                        component: StepForm,
+                        component: 'pages/form/StepForm',
                         name: "分步表单",
                     },
                     {
                         path: "/form/advanced-form",
-                        component: AdvancedForm,
+                        component: "pages/form/AdvancedForm",
                         name: "高级表单",
                     },
                     {
-                        component: NotFound,
+                        component: "pages/404",
                     },
                 ],
             },
@@ -111,7 +90,7 @@ const routerConfig: Array<IRouter> = [
                     {
                         path: "/list/search",
                         name: "搜索列表",
-                        component: SearchWrapper,
+                        component: "pages/list/search/SearchWrapper",
                         routes: [
                             {
                                 path: "/list/search",
@@ -119,17 +98,17 @@ const routerConfig: Array<IRouter> = [
                             },
                             {
                                 path: "/list/search/article",
-                                component: Article,
+                                component: "pages/list/search/Article",
                                 name: "搜索列表（文章）",
                             },
                             {
                                 path: "/list/search/project",
-                                component: Project,
+                                component: "pages/list/search/Project",
                                 name: "搜索列表（项目）",
                             },
                             {
                                 path: "/list/search/application",
-                                component: Application,
+                                component: "pages/list/search/Application",
                                 name: "搜索列表（应用）",
                             },
                         ],
@@ -137,26 +116,26 @@ const routerConfig: Array<IRouter> = [
                     {
                         path: "/list/table",
                         name: "查询表格",
-                        component: TableList,
+                        component: "pages/list/TableList",
                     },
                     {
                         path: "/list/table/detail",
                         name: "表格详情",
                         hideOnMenu: true,
-                        component: TableDetail,
+                        component: "pages/list/TableList/Detail",
                     },
                     {
                         path: "/list/basicList",
                         name: "标准列表",
-                        component: BasicList,
+                        component: "pages/list/BasicList",
                     },
                     {
                         path: "/list/cardList",
                         name: "卡片列表",
-                        component: CardList,
+                        component: "pages/list/CardList",
                     },
                     {
-                        component: NotFound,
+                        component: "pages/404",
                     },
                 ],
             },
@@ -172,12 +151,12 @@ const routerConfig: Array<IRouter> = [
                     {
                         path: "/detail/basicDetail",
                         name: "基础详情页",
-                        component: Detail,
+                        component: "pages/detail/BasicDetail",
                     },
                     {
                         path: "/detail/advancedDetail",
                         name: "高级详情页",
-                        component: AdvancedDetail,
+                        component: "pages/detail/AdvancedDetail",
                     },
                 ],
             },
@@ -199,17 +178,17 @@ const routerConfig: Array<IRouter> = [
                     {
                         path: "/error/403",
                         name: "403",
-                        component: NotAccess,
+                        component: "pages/403",
                     },
                     {
                         path: "/error/404",
                         name: "404",
-                        component: NotFound,
+                        component: "pages/404",
                     },
                     {
                         path: "/error/500",
                         name: "500",
-                        component: ServerError,
+                        component: "pages/500",
                     },
                 ],
             },
@@ -225,7 +204,7 @@ const routerConfig: Array<IRouter> = [
                     {
                         path: "/user/user-center",
                         name: "个人中心",
-                        component: UserCenter,
+                        component: "pages/user/UserCenter",
                     },
                 ],
             },
@@ -233,15 +212,15 @@ const routerConfig: Array<IRouter> = [
                 path: "/setting",
                 name: "设置",
                 icon: "icon-setting",
-                component: Setting,
+                component: "pages/common/Setting",
             },
             {
-                component: NotFound,
+                component: "pages/404",
             },
         ],
     },
     {
-        component: NotFound,
+        component: "pages/404",
     },
 ];
 
