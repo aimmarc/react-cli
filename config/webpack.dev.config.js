@@ -4,6 +4,17 @@ const merge = require("webpack-merge");
 const proxy = require("./proxy");
 const webpack = require("webpack");
 
+const lessLoader = {
+    loader: "less-loader",
+    options: {
+        lessOptions: {
+            // 如果使用less-loader@5，请移除 lessOptions 这一级直接配置选项。
+            modifyVars: theme,
+            javascriptEnabled: true,
+        },
+    },
+}
+
 module.exports = merge(webpackBaseConfig, {
     mode: "development",
 
@@ -41,16 +52,7 @@ module.exports = merge(webpackBaseConfig, {
                         },
                     },
                     "postcss-loader",
-                    {
-                        loader: "less-loader",
-                        options: {
-                            lessOptions: {
-                                // 如果使用less-loader@5，请移除 lessOptions 这一级直接配置选项。
-                                modifyVars: theme,
-                                javascriptEnabled: true,
-                            },
-                        },
-                    },
+                    lessLoader,
                 ],
             },
             {
@@ -60,16 +62,7 @@ module.exports = merge(webpackBaseConfig, {
                     "style-loader",
                     "css-loader",
                     "postcss-loader",
-                    {
-                        loader: "less-loader",
-                        options: {
-                            lessOptions: {
-                                // 如果使用less-loader@5，请移除 lessOptions 这一级直接配置选项。
-                                modifyVars: theme,
-                                javascriptEnabled: true,
-                            },
-                        },
-                    },
+                    lessLoader,
                 ],
             },
         ],

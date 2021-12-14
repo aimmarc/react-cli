@@ -52,6 +52,10 @@ module.exports = {
                     name: "img/[name].[hash:7].[ext]",
                 },
             },
+            {
+                test: /\.html$/i,
+                loader: "html-loader",
+            },
         ],
     },
 
@@ -59,7 +63,7 @@ module.exports = {
 
     plugins: [
         new HtmlWebpackPlugin({
-            title: "Development",
+            // title: "Development",
             filename: "index.html",
             template: "./src/index.html",
         }),

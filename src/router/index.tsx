@@ -5,7 +5,7 @@
  * @param routes
  * @description 生成路由
  */
-import React, { ComponentType, memo } from "react";
+import React, { ComponentType } from "react";
 import {
     Router,
     Switch,
@@ -17,7 +17,6 @@ import config from "../config/app";
 import { createHashHistory, createBrowserHistory } from "history";
 import BasicRoute from "./BasicRoute";
 import asyncComponent from './AsyncComponent';
-import TableList from "@/pages/list/TableList";
 
 /**
  * 生成路由
