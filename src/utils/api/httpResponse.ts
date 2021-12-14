@@ -1,4 +1,4 @@
-import config from "@/config/app";
+import config from "@/common/config/app";
 
 /**
  * 一般返回

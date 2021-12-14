@@ -12,8 +12,8 @@ import {
     Redirect,
     RouteComponentProps,
 } from "react-router-dom";
-import routerConfig, { IRouter } from "../config/router.config";
-import config from "../config/app";
+import routerConfig, { IRouter } from "@/common/config/router.config";
+import config from "../common/config/app";
 import { createHashHistory, createBrowserHistory } from "history";
 import BasicRoute from "./BasicRoute";
 import asyncComponent from './AsyncComponent';

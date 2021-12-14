@@ -1,5 +1,4 @@
 import axios from "axios";
-import config from "@/config/app";
 import interceptors from "./interceptors";
 import { getBaseUrl } from "./common";
 

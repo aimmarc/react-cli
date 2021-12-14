@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import style from "./index.less";
-import config from "@/config/app";
+import config from "@/common/config/app";
 import { inject, observer } from "mobx-react";
 import { useHistory } from "react-router";
 import { getMenuName, getMenuRoute } from "@/utils/resolveMenuData";

@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./BaseLayout.less";
 import { Header, Sider, TabBar } from "@/components/Layouts";
-import routerConfig from "@/config/router.config";
+import routerConfig from "@/common/config/router.config";
 import { resolveMenuData } from "@/utils/resolveMenuData";
 import { observer, inject } from "mobx-react";
 import { useHistory } from "react-router";

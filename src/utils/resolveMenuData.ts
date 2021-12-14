@@ -1,4 +1,4 @@
-import routerConfig, { IRouter } from "@/config/router.config";
+import routerConfig, { IRouter } from "@/common/config/router.config";
 
 /**
  * 处理菜单数据

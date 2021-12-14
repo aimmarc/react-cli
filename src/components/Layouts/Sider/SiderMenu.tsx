@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Menu } from "antd";
-import { IRouter } from "@/config/router.config";
+import { IRouter } from "@/common/config/router.config";
 import { useHistory } from "react-router-dom";
 import IconFont from "../../IconFont";
 

@@ -6,6 +6,17 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCssAssetsWebpackPlugin = require("optimize-css-assets-webpack-plugin");
 const WebpackBar = require("webpackbar");
 
+const lessLoader = {
+  loader: "less-loader",
+  options: {
+    lessOptions: {
+      // 如果使用less-loader@5，请移除 lessOptions 这一级直接配置选项。
+      modifyVars: theme,
+      javascriptEnabled: true,
+    },
+  },
+};
+
 module.exports = merge(webpackBaseConfig, {
   mode: "production",
 
@@ -23,16 +34,7 @@ module.exports = merge(webpackBaseConfig, {
             },
           },
           "postcss-loader",
-          {
-            loader: "less-loader",
-            options: {
-              lessOptions: {
-                // 如果使用less-loader@5，请移除 lessOptions 这一级直接配置选项。
-                modifyVars: theme,
-                javascriptEnabled: true,
-              },
-            },
-          },
+          lessLoader,
         ],
       },
       {
@@ -42,16 +44,7 @@ module.exports = merge(webpackBaseConfig, {
           MiniCssExtractPlugin.loader,
           "css-loader",
           "postcss-loader",
-          {
-            loader: "less-loader",
-            options: {
-              lessOptions: {
-                // 如果使用less-loader@5，请移除 lessOptions 这一级直接配置选项。
-                modifyVars: theme,
-                javascriptEnabled: true,
-              },
-            },
-          },
+          lessLoader,
         ],
       },
     ],

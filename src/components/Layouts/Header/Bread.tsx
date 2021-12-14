@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import routes, { IRouter } from "@/config/router.config";
+import routes, { IRouter } from "@/common/config/router.config";
 import { Breadcrumb } from "antd";
-import config from "@/config/app";
+import config from "@/common/config/app";
 import styles from "./Bread.less";
 import { Link } from "react-router-dom";
 import { app } from "@/store";

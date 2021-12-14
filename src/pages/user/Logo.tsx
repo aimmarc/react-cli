@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./index.less";
-import app from "@/config/app";
+import app from "@/common/config/app";
 
 const Logo = () => (
   <div className={styles.logo}>

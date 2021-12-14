@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./index.less";
 import SiderMenu from "./SiderMenu";
-import config from "@/config/app";
+import config from "@/common/config/app";
 import { getBackgroundColor } from "@/utils/theme";
 import { inject, observer } from "mobx-react";
 
