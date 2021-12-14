@@ -26,6 +26,7 @@ module.exports = merge(webpackBaseConfig, {
         test: /\.(less|css)$/,
         exclude: [/node_modules/],
         use: [
+          "style-loader",
           MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
@@ -41,6 +42,7 @@ module.exports = merge(webpackBaseConfig, {
         test: /\.(less|css)$/,
         exclude: [/src/],
         use: [
+          "style-loader",
           MiniCssExtractPlugin.loader,
           "css-loader",
           "postcss-loader",
