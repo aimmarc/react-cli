@@ -49,7 +49,7 @@ module.exports = merge(webpackBaseConfig, {
                         loader: "css-loader",
                         options: {
                             modules: {
-                                localIdentName: "[path][name]-[local]-[hash:5]",
+                                localIdentName: "[name]-[local]__[hash:base64:5]",
                             },
                         },
                     },
