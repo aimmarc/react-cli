@@ -4,7 +4,6 @@ const merge = require("webpack-merge");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCssAssetsWebpackPlugin = require("optimize-css-assets-webpack-plugin");
-const WebpackBar = require("webpackbar");
 
 const lessLoader = {
   loader: "less-loader",
@@ -26,12 +25,13 @@ module.exports = merge(webpackBaseConfig, {
         test: /\.(less|css)$/,
         exclude: [/node_modules/],
         use: [
-          "style-loader",
           MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
             options: {
-              modules: true,
+              modules: {
+                localIdentName: "[path][name]-[local]-[hash:5]",
+              },
             },
           },
           "postcss-loader",
@@ -42,7 +42,6 @@ module.exports = merge(webpackBaseConfig, {
         test: /\.(less|css)$/,
         exclude: [/src/],
         use: [
-          "style-loader",
           MiniCssExtractPlugin.loader,
           "css-loader",
           "postcss-loader",
@@ -53,10 +52,10 @@ module.exports = merge(webpackBaseConfig, {
   },
 
   plugins: [
-    new WebpackBar(),
     new MiniCssExtractPlugin({
+      ignoreOrder: true,
       filename: "css/[name].[contenthash:7].css",
-      chunkFilename: "css/[name].[contenthash:7].css",
+      chunkFilename: "css/[name].[contenthash:7].css"
     }),
   ],
 
@@ -89,6 +88,9 @@ module.exports = merge(webpackBaseConfig, {
         },
       },
     },
-    minimizer: [new UglifyJsPlugin(), new OptimizeCssAssetsWebpackPlugin({})],
+    minimizer: [
+      new UglifyJsPlugin(),
+      new OptimizeCssAssetsWebpackPlugin({})
+    ],
   },
 });

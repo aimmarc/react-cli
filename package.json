@@ -42,6 +42,7 @@
     "postcss-loader": "^5.0.0",
     "postcss-preset-env": "^6.7.0",
     "postcss-safe-parser": "^5.0.2",
+    "progress-bar-webpack-plugin": "^2.1.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "source-map-loader": "^3.0.0",
@@ -53,14 +54,18 @@
     "url-loader": "^4.1.1",
     "webpack": "^5.21.1",
     "webpack-cli": "^4.5.0",
+    "webpack-dashboard": "^3.3.6",
     "webpack-dev-server": "^3.11.2",
     "webpack-merge": "^4.2.2",
     "webpackbar": "^5.0.0-3"
   },
   "browserslist": [
-    "chrome >=72",
-    "firefox >=66",
-    "ie >=10"
+    "defaults",
+    "not ie < 11",
+    "last 2 versions",
+    "> 1%",
+    "iOS 7",
+    "last 3 iOS versions"
   ],
   "dependencies": {
     "@antv/g2": "^4.1.23",
@@ -68,6 +73,7 @@
     "@umijs/use-request": "^1.4.3",
     "antd": "^4.12.2",
     "axios": "^0.21.1",
+    "connect-history-api-fallback": "^1.6.0",
     "mobx": "^6.2.0",
     "mobx-react": "^7.1.0",
     "mockjs": "^1.1.0",

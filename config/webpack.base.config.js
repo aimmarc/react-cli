@@ -3,6 +3,7 @@ const tsImportPluginFactory = require("ts-import-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 const friendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -16,6 +17,10 @@ module.exports = {
     },
 
     stats: 'errors-only',
+
+    performance: {
+        hints: false,
+    },
 
     module: {
         rules: [
@@ -59,7 +64,7 @@ module.exports = {
         ],
     },
 
-    ignoreWarnings: [/Failed to parse source map/],
+    ignoreWarnings: [],
 
     plugins: [
         new HtmlWebpackPlugin({
@@ -70,7 +75,8 @@ module.exports = {
         new webpack.DefinePlugin({
             "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
         }),
-        new friendlyErrorsWebpackPlugin()
+        new friendlyErrorsWebpackPlugin(),
+        new ProgressBarPlugin(),
     ],
 
     resolve: {

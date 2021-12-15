@@ -34,6 +34,8 @@ module.exports = merge(webpackBaseConfig, {
                 },
             ],
         },
+        noInfo: true,
+        stats: 'errors-only',
     },
 
     module: {
@@ -67,7 +69,7 @@ module.exports = merge(webpackBaseConfig, {
             },
         ],
     },
-    
+
     devtool: false,
 
     plugins: [
