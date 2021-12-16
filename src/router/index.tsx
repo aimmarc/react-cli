@@ -5,17 +5,17 @@
  * @param routes
  * @description 生成路由
  */
-import React, { ComponentType } from "react";
+import React, { ComponentType } from 'react';
 import {
     Router,
     Switch,
     Redirect,
     RouteComponentProps,
-} from "react-router-dom";
-import routerConfig, { IRouter } from "@/common/config/router.config";
-import config from "../common/config/app";
-import { createHashHistory, createBrowserHistory } from "history";
-import BasicRoute from "./BasicRoute";
+} from 'react-router-dom';
+import routerConfig, { IRouter } from '@/common/config/router.config';
+import config from '../common/config/app';
+import { createHashHistory, createBrowserHistory } from 'history';
+import BasicRoute from './BasicRoute';
 import asyncComponent from './AsyncComponent';
 
 /**
@@ -30,16 +30,19 @@ const mapRoutes = (routes: Array<IRouter>) =>
             | ComponentType<any>
             | undefined;
         if (item.routes) {
-            const Wrapper: any = typeof item.component === 'string' ?
-                (asyncComponent(() => import(`@/${item.component}`)) || React.Fragment) : (item.component || React.Fragment);
+            const Wrapper: any = item.component
+                ? asyncComponent(() => import(`@/${item.component}`)) ||
+                  React.Fragment
+                : item.component || React.Fragment;
             component = () => (
                 <Wrapper>
                     <Switch>{mapRoutes(item.routes || [])}</Switch>
                 </Wrapper>
             );
         } else {
-            component = typeof item.component === 'string'
-                ? asyncComponent(() => import(`@/${item.component}`)) : item.component;
+            component = item.component
+                ? asyncComponent(() => import(`@/${item.component}`))
+                : undefined;
         }
 
         return !!item.redirect ? (
@@ -60,7 +63,7 @@ const mapRoutes = (routes: Array<IRouter>) =>
     });
 
 const history =
-    config.routerMode === "history"
+    config.routerMode === 'history'
         ? createBrowserHistory()
         : createHashHistory();
 /**
@@ -69,9 +72,7 @@ const history =
  */
 const RouterComponent = () => (
     <Router history={history}>
-        <Switch>
-            {mapRoutes(routerConfig)}
-        </Switch>
+        <Switch>{mapRoutes(routerConfig)}</Switch>
     </Router>
 );
 

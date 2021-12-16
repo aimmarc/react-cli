@@ -10,7 +10,7 @@
  
  export interface IRouter {
      path?: String | any;
-     component?: ComponentType<RouteComponentProps<any>> | ComponentType<any> | string;
+     component?: string;
      redirect?: History.LocationDescriptor | String | any;
      routes?: Array<IRouter>;
      name?: string;
