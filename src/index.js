@@ -6,7 +6,6 @@ import { ConfigProvider } from "antd";
 import zhCN from "antd/lib/locale/zh_CN";
 import store from "./store";
 import { Provider as MobxProvider } from "mobx-react";
-import "./mock";
 
 ReactDOM.render(
     <ConfigProvider locale={zhCN}>

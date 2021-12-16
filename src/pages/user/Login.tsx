@@ -27,7 +27,7 @@ const Login: React.FC<ILoginProps> = (props): React.ReactElement => {
         manual: true,
         onSuccess: (ret: IBaseResponse) => {
             console.log(ret)
-            if (ret.code === 0) {
+            if (ret.code === 10000) {
                 const redirectUrl = getQueryVariable("redirectUrl");
                 user.login({ ...ret.data, isLogin: true });
                 if (redirectUrl) {

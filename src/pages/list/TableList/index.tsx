@@ -183,9 +183,9 @@ class TableList extends React.Component<{}, ITableListState> {
                 </CollapseForm>
                 <Table
                     columns={this.columns}
-                    dataSource={tableData.list}
+                    dataSource={tableData?.list}
                     pagination={{
-                        total: tableData.total,
+                        total: tableData?.total,
                         onChange: this.onPageChange,
                         onShowSizeChange: this.onSizeChange,
                         showTotal: (total) => `共${total}条数据`,

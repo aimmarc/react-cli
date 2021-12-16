@@ -3,6 +3,8 @@ const webpackBaseConfig = require("./webpack.base.config");
 const merge = require("webpack-merge");
 const proxy = require("./proxy");
 const webpack = require("webpack");
+const apiMocker = require('mocker-api');
+const path = require("path");
 
 const lessLoader = {
     loader: "less-loader",
@@ -36,6 +38,9 @@ module.exports = merge(webpackBaseConfig, {
         },
         noInfo: true,
         stats: 'errors-only',
+        before(app) {
+            apiMocker(app, path.resolve('./mock/index.js'))
+        }
     },
 
     module: {

@@ -17,7 +17,7 @@ export default function interceptors(instance: any) {
         (response: AxiosResponse) => {
             const { data } = response;
             let ret;
-            if (data.code === 0) {
+            if (data.code === 10000) {
                 ret = getResponse(data);
             } else {
                 ret = getFailResponse(data);
