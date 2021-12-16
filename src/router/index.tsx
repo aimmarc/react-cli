@@ -29,10 +29,23 @@ const mapRoutes = (routes: Array<IRouter>) =>
             | ComponentType<RouteComponentProps<any>>
             | ComponentType<any>
             | undefined;
+        let tempComponent: any = null;
+        if (item.component?.indexOf('pages') === 0) {
+            tempComponent = asyncComponent(
+                () => import(`@/pages${item.component?.replace('pages', '')}`),
+            );
+        }
+        if (item.component?.indexOf('layouts') === 0) {
+            tempComponent = asyncComponent(
+                () =>
+                    import(
+                        `@/layouts${item.component?.replace('layouts', '')}`
+                    ),
+            );
+        }
         if (item.routes) {
             const Wrapper: any = item.component
-                ? asyncComponent(() => import(`@/${item.component}`)) ||
-                  React.Fragment
+                ? tempComponent || React.Fragment
                 : item.component || React.Fragment;
             component = () => (
                 <Wrapper>
@@ -40,9 +53,7 @@ const mapRoutes = (routes: Array<IRouter>) =>
                 </Wrapper>
             );
         } else {
-            component = item.component
-                ? asyncComponent(() => import(`@/${item.component}`))
-                : undefined;
+            component = item.component ? tempComponent : undefined;
         }
 
         return !!item.redirect ? (
