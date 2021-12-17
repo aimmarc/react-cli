@@ -67,11 +67,11 @@
         "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
     },
     "include": [
+        "src/*,",
         "src/**/*",
-        "typings/**/*",
         ".eslintrc.js",
         ".prettierrc.js",
-        "src/index.d.ts",
+        "src/typings.d.ts"
     ],
     "exclude": [
         "./config/*",
