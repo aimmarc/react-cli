@@ -19,7 +19,7 @@ interface ILoginProps {
  * 登录
  * @returns
  */
-const Login: React.FC<ILoginProps> = (props): React.ReactElement => {
+const Login: React.FC<ILoginProps> = (props: ILoginProps): React.ReactElement => {
     const history = useHistory();
     const { user } = props;
 
