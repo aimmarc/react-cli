@@ -12,3 +12,8 @@ declare module '*.tiff';
 declare module 'omit.js';
 declare module 'numeral';
 declare module 'Less';
+
+declare interface TBaseProp {
+    children?: string | number | boolean | {} | ReactElement<any, string | JSXElementConstructor<any>> | ReactNodeArray | ReactPortal | null | undefined
+}
+

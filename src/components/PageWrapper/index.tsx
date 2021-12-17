@@ -1,16 +1,15 @@
-import React from "react";
-import styles from "./index.less";
-import { PageHeader, Layout, BackTop } from "antd";
-import { inject, observer } from "mobx-react";
-import { IAppStore } from "@/store/modules/app";
-import { getBackgroundColor } from "@/utils/theme";
+import React from 'react';
+import styles from './index.less';
+import { PageHeader, Layout, BackTop } from 'antd';
+import { inject, observer } from 'mobx-react';
+import { IAppStore } from '@/store/modules/app';
+import { getBackgroundColor } from '@/utils/theme';
 const { Content } = Layout;
 
-interface IProps {
+interface IPageWrapperProps extends TBaseProp {
     custom?: boolean;
     fit?: boolean;
     bg?: boolean;
-    children?: any;
     title?: string | React.ReactElement;
     subTitle?: string | React.ReactElement;
     goBack?: boolean;
@@ -20,7 +19,7 @@ interface IProps {
     app?: IAppStore;
 }
 
-const PageWrapper: React.FC<IProps> = (props: IProps): React.ReactElement => {
+const PageWrapper: React.FC<IPageWrapperProps> = (props): React.ReactElement => {
     const setting = props.app ? props.app.setting : { showTabs: true };
 
     return (
@@ -29,8 +28,8 @@ const PageWrapper: React.FC<IProps> = (props: IProps): React.ReactElement => {
             style={{
                 minHeight: props.fit
                     ? `calc(100vh - ${setting.showTabs ? 104 : 66}px)`
-                    : "auto",
-                backgroundColor: props.bg ? getBackgroundColor("#fff") : "",
+                    : 'auto',
+                backgroundColor: props.bg ? getBackgroundColor('#fff') : '',
                 ...props.style,
             }}
         >
@@ -50,4 +49,4 @@ const PageWrapper: React.FC<IProps> = (props: IProps): React.ReactElement => {
     );
 };
 
-export default inject("app")(observer(PageWrapper));
+export default inject('app')(observer(PageWrapper));
