@@ -37,7 +37,7 @@ const asyncComponent = (load: () => Promise<LoaderModule>) =>
                 <Component {...this.props} />
             ) : (
                 <Spin
-                    style={{ width: '100%', marginTop: 200 }}
+                    style={{ width: '100%', marginTop: 100 }}
                     tip="加载中..."
                 />
             );
