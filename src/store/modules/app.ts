@@ -1,6 +1,6 @@
 import { action, makeAutoObservable } from "mobx";
 import { TTabs } from "@/components/Layouts/TabBar";
-import app from "@/common/config/app";
+import app from "@/common/config/app.config";
 import { switchDarkTheme } from "@/utils/theme";
 import StorageEnum from "@/utils/constants/storage";
 

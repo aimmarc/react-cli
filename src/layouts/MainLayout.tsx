@@ -1,4 +1,4 @@
-import config from "@/common/config/app";
+import config from "@/common/config/app.config";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import styles from "./MainLayout.less";

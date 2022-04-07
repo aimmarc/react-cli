@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./index.less";
-import config from "@/common/config/app";
+import config from "@/common/config/app.config";
 import { inject, observer } from "mobx-react";
 import { getBackgroundColor } from "@/utils/theme";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import config from "@/common/config/app";
+import config from "@/common/config/app.config";
 import style from "./index.less";
 
 interface IProps {

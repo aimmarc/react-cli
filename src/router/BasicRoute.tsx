@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, RouteProps, Redirect } from 'react-router-dom'
 import { inject, observer } from 'mobx-react'
 import { IUserStore } from '@/store/modules/user'
-import config from '@/common/config/app'
+import config from '@/common/config/app.config'
 
 interface IBasicRouteProps extends RouteProps {
     user?: IUserStore

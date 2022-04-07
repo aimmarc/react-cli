@@ -13,7 +13,7 @@ import {
     RouteComponentProps,
 } from 'react-router-dom';
 import routerConfig, { IRouter } from '@/common/config/router.config';
-import config from '../common/config/app';
+import config from '../common/config/app.config';
 import { createHashHistory, createBrowserHistory } from 'history';
 import BasicRoute from './BasicRoute';
 import asyncComponent from './AsyncComponent';
