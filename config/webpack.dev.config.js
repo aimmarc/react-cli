@@ -20,8 +20,6 @@ const lessLoader = {
 module.exports = merge(webpackBaseConfig, {
     mode: "development",
 
-    target: "web",
-
     devServer: {
         port: 3000,
         host: '0.0.0.0',

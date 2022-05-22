@@ -16,6 +16,8 @@ module.exports = {
         path: path.resolve(__dirname, '../dist')
     },
 
+    target: ["web", "es5"],
+
     stats: 'errors-only',
 
     performance: {
