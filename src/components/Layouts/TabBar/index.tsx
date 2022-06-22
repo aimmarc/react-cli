@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import style from './index.less';
 import config from '@/common/config/app.config';
 import { inject, observer } from 'mobx-react';
@@ -10,6 +10,9 @@ import { getBackgroundColor } from '@/utils/theme';
 import { IAppStore } from '@/store/modules/app';
 import { useRecoilState } from 'recoil';
 import { activeTabState, tabState } from '@/recoil/app';
+import useAtomState from '@/recoil/lib/useAtomState';
+import StorageEnum from '@/utils/constants/storage';
+import useFirstEffect from '@/utils/hooks/useFirstEffect';
 const { TabPane } = Tabs;
 
 export type TTabs = {
@@ -34,12 +37,14 @@ const TabBar: React.FC<ITabBarProps> = (props): React.ReactElement => {
     const { app } = props;
     const history = useHistory();
     const [unmount, setUnmount] = useState(false);
-    const [tabData, setTabData] = useRecoilState(tabState);
+    const [tabData, setTabData] = useAtomState(tabState, (tabs) => {
+        localStorage.setItem(StorageEnum.TABS_DATA, JSON.stringify(tabs));
+    });
     const [activeTab, setActiveTab] = useRecoilState(activeTabState);
     const resolveTabsRef: any = useRef();
     const tabDataRef: any = useRef();
 
-    useEffect(() => {
+    useFirstEffect(() => {
         history.listen((route: any, action) => {
             if (unmount) {
                 return;
@@ -70,7 +75,7 @@ const TabBar: React.FC<ITabBarProps> = (props): React.ReactElement => {
         return () => {
             setUnmount(true);
         };
-    }, []);
+    });
 
     useEffect(() => {
         // 使用useRef保存每次最新的resolveTabs函数

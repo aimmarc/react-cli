@@ -1,6 +1,6 @@
 import { TTabs } from '@/components/Layouts/TabBar';
 import StorageEnum from '@/utils/constants/storage';
-import { atom } from 'recoil';
+import { atom, AtomOptions } from 'recoil';
 
 function getTabsData() {
     const tabsData = localStorage.getItem(StorageEnum.TABS_DATA) || '[]';
