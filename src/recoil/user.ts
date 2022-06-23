@@ -42,4 +42,4 @@ const collapsedState = atom<boolean>({
     default: false,
 });
 
-export { userInfoState, collapsedState };
+export { userInfoState };

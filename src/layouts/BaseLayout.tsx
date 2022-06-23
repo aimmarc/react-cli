@@ -1,13 +1,16 @@
-import React from "react";
-import style from "./BaseLayout.less";
-import { Header, Sider, TabBar } from "@/components/Layouts";
-import routerConfig from "@/common/config/router.config";
-import { resolveMenuData } from "@/utils/resolveMenuData";
-import { observer, inject } from "mobx-react";
-import { useHistory } from "react-router";
-import MainLayout from "./MainLayout";
-import { IAppStore } from "@/store/modules/app";
-import { IUserStore } from "@/store/modules/user";
+import React from 'react';
+import style from './BaseLayout.less';
+import { Header, Sider, TabBar } from '@/components/Layouts';
+import routerConfig from '@/common/config/router.config';
+import { resolveMenuData } from '@/utils/resolveMenuData';
+import { observer, inject } from 'mobx-react';
+import { useHistory } from 'react-router';
+import MainLayout from './MainLayout';
+import { IAppStore } from '@/store/modules/app';
+import { IUserStore } from '@/store/modules/user';
+import useAtomState from '@/recoil/lib/useAtomState';
+import { collapsedState, settingState } from '@/recoil/app';
+import { useRecoilValue } from 'recoil';
 
 interface IBaseLayoutProps {
     app: IAppStore;
@@ -21,12 +24,13 @@ interface IBaseLayoutProps {
  */
 const BaseLayout: React.FC<IBaseLayoutProps> = (props): React.ReactElement => {
     const { app, user } = props;
-    const { setting } = app;
     const menuData = resolveMenuData(routerConfig);
     const history = useHistory();
+    const [collapsed, setCollapsed] = useAtomState(collapsedState);
+    const setting = useRecoilValue(settingState);
 
     const onCollapsed = () => {
-        app.setCollapsed(!app.collapsed);
+        setCollapsed(!collapsed);
     };
 
     const onLogout = () => {
@@ -38,17 +42,17 @@ const BaseLayout: React.FC<IBaseLayoutProps> = (props): React.ReactElement => {
         <div className={style.baselayoutWraper}>
             <Header
                 onCollapsed={onCollapsed}
-                collapsed={app.collapsed}
+                collapsed={collapsed}
                 onLogout={onLogout}
-                showFullScreen={app.setting.showFullScreen}
+                showFullScreen={setting.showFullScreen}
             />
-            <Sider menuData={menuData} collapsed={app.collapsed} />
+            <Sider menuData={menuData} collapsed={collapsed} />
             {setting.showTabs && <TabBar tabs={app.tabs} active="" />}
-            <MainLayout collapsed={app.collapsed} app={props.app}>
+            <MainLayout collapsed={collapsed} setting={setting}>
                 {props.children}
             </MainLayout>
         </div>
     );
 };
 
-export default inject("app", "user")(observer(BaseLayout));
+export default inject('app', 'user')(observer(BaseLayout));

@@ -1,22 +1,16 @@
-import React from "react";
-import { PageWrapper } from "@/components";
-import { Col, List, Row, Switch } from "antd";
-import { inject, observer } from "mobx-react";
-import { IAppStore, ISetting } from "@/store/modules/app";
-import { switchDarkTheme } from "@/utils/theme";
-import { useReducer } from "react";
+import React from 'react';
+import { PageWrapper } from '@/components';
+import { Col, List, Row, Switch } from 'antd';
+import { switchDarkTheme } from '@/utils/theme';
+import { useRecoilState } from 'recoil';
+import { settingState } from '@/recoil/app';
 
-interface ISettingProps {
-    app: IAppStore;
-}
-
-const Setting: React.FC<ISettingProps> = (props): React.ReactElement => {
-    const { setting } = props.app;
-    const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
+const Setting: React.FC = (): React.ReactElement => {
+    const [setting, setSetting] = useRecoilState(settingState);
 
     const handleChange = (key: string, value: boolean) => {
         setting[key] = value;
-        props.app.setSetting(setting);
+        setSetting(setting);
     };
 
     return (
@@ -29,7 +23,7 @@ const Setting: React.FC<ISettingProps> = (props): React.ReactElement => {
                                 <Switch
                                     defaultChecked={setting.showTabs}
                                     onClick={(value) =>
-                                        handleChange("showTabs", value)
+                                        handleChange('showTabs', value)
                                     }
                                 />
                             }
@@ -41,7 +35,7 @@ const Setting: React.FC<ISettingProps> = (props): React.ReactElement => {
                                 <Switch
                                     defaultChecked={setting.showFullScreen}
                                     onClick={(value) =>
-                                        handleChange("showFullScreen", value)
+                                        handleChange('showFullScreen', value)
                                     }
                                 />
                             }
@@ -54,7 +48,7 @@ const Setting: React.FC<ISettingProps> = (props): React.ReactElement => {
                                     defaultChecked={setting.dark}
                                     onClick={(value) => {
                                         switchDarkTheme(value);
-                                        handleChange("dark", value);
+                                        handleChange('dark', value);
                                     }}
                                 />
                             }
@@ -68,4 +62,4 @@ const Setting: React.FC<ISettingProps> = (props): React.ReactElement => {
     );
 };
 
-export default inject("app")(observer(Setting));
+export default Setting;

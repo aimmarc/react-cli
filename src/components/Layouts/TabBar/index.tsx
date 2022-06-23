@@ -8,8 +8,8 @@ import { IconFont } from '@/components';
 import { Tabs } from 'antd';
 import { getBackgroundColor } from '@/utils/theme';
 import { IAppStore } from '@/store/modules/app';
-import { useRecoilState } from 'recoil';
-import { activeTabState, tabState } from '@/recoil/app';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { activeTabState, collapsedState, tabState } from '@/recoil/app';
 import useAtomState from '@/recoil/lib/useAtomState';
 import StorageEnum from '@/utils/constants/storage';
 import useFirstEffect from '@/utils/hooks/useFirstEffect';
@@ -33,8 +33,7 @@ export interface ITabBarProps {
  * @param props
  * @returns
  */
-const TabBar: React.FC<ITabBarProps> = (props): React.ReactElement => {
-    const { app } = props;
+const TabBar: React.FC<ITabBarProps> = (): React.ReactElement => {
     const history = useHistory();
     const [unmount, setUnmount] = useState(false);
     const [tabData, setTabData] = useAtomState(tabState, (tabs) => {
@@ -43,6 +42,7 @@ const TabBar: React.FC<ITabBarProps> = (props): React.ReactElement => {
     const [activeTab, setActiveTab] = useRecoilState(activeTabState);
     const resolveTabsRef: any = useRef();
     const tabDataRef: any = useRef();
+    const collapsed = useRecoilValue(collapsedState);
 
     useFirstEffect(() => {
         history.listen((route: any, action) => {
@@ -143,10 +143,8 @@ const TabBar: React.FC<ITabBarProps> = (props): React.ReactElement => {
         <div
             className={style.tabbarWrap}
             style={{
-                width: `calc(100% - ${
-                    app?.collapsed ? 78 : config.menuWidth
-                }px)`,
-                left: app?.collapsed ? 79 : config.menuWidth,
+                width: `calc(100% - ${collapsed ? 78 : config.menuWidth}px)`,
+                left: collapsed ? 79 : config.menuWidth,
                 backgroundColor: getBackgroundColor('#f0f2f5'),
             }}
         >
@@ -181,4 +179,4 @@ const TabBar: React.FC<ITabBarProps> = (props): React.ReactElement => {
     );
 };
 
-export default inject('app')(observer(TabBar));
+export default TabBar;
