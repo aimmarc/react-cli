@@ -1,54 +1,17 @@
 import React from 'react';
-import { Form, Input, Button, Checkbox, message } from 'antd';
+import { Form, Input, Button, Checkbox } from 'antd';
 import styles from './index.less';
 import Logo from './Logo';
-import { useHistory } from 'react-router';
-import { getQueryVariable } from '@/utils/common';
 import { inject, observer } from 'mobx-react';
-import { IUserStore } from '@/store/modules/user';
-import { IBaseResponse } from '@/utils/api/httpResponse';
 import { getBackgroundColor } from '@/utils/theme';
-import { useLogin } from '@/domain/service/user';
-
-interface ILoginProps {
-    user: IUserStore;
-}
+import { useLogin } from '@/domain/model/entity/user';
 
 /**
  * 登录
  * @returns
  */
-const Login: React.FC<ILoginProps> = (
-    props: ILoginProps,
-): React.ReactElement => {
-    const history = useHistory();
-    const { user } = props;
-
-    const { loading, run } = useLogin((ret: IBaseResponse) => {
-        if (ret.code === 10000) {
-            const redirectUrl = getQueryVariable('redirectUrl');
-            user.login({ ...ret.data, isLogin: true });
-            if (redirectUrl) {
-                location.href = redirectUrl;
-                return;
-            }
-            history.replace('/');
-        } else {
-            message.error(ret.message);
-        }
-    });
-
-    const onFinish = (values: any) => {
-        console.log('Success:', { data: values });
-        run({
-            username: values.username,
-            password: values.password,
-        });
-    };
-
-    const onFinishFailed = (errorInfo: any) => {
-        console.log('Failed:', errorInfo);
-    };
+const Login: React.FC = (): React.ReactElement => {
+    const { loading, run } = useLogin();
 
     return (
         <div
@@ -69,8 +32,7 @@ const Login: React.FC<ILoginProps> = (
                 <Form
                     name="basic"
                     initialValues={{ remember: true }}
-                    onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
+                    onFinish={run}
                 >
                     <Form.Item
                         name="username"

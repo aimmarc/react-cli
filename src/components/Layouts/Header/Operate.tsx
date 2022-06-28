@@ -1,5 +1,5 @@
-import React, { useState, useEffect, MouseEventHandler } from "react";
-import style from "./index.less";
+import React from 'react';
+import style from './index.less';
 import {
     FullscreenOutlined,
     SettingOutlined,
@@ -8,40 +8,22 @@ import {
     UserOutlined,
     LogoutOutlined,
     FullscreenExitOutlined,
-} from "@ant-design/icons";
-import { Menu, Dropdown, Avatar } from "antd";
-import {
-    exitFullScreen,
-    fullScreen,
-    isFullscreenEnabled,
-} from "@/utils/common";
-import { useHistory } from "react-router-dom";
-import { inject, observer } from "mobx-react";
-import { IUserStore } from "@/store/modules/user";
+} from '@ant-design/icons';
+import { Menu, Dropdown, Avatar } from 'antd';
+import { useHistory } from 'react-router-dom';
+import { inject, observer } from 'mobx-react';
+import { useFullScreen } from '@/domain/model/entity/app';
+import { useUserInfo } from '@/domain/model/entity/user';
 
 interface IProps {
     onLogout: any;
     showFullScreen: boolean;
-    user?: IUserStore;
 }
 
 const Operate: React.FC<IProps> = (props: IProps): React.ReactElement => {
-    const { user } = props;
-    const [full, setFull] = useState(false);
     const history = useHistory();
-
-    useEffect(() => {
-        window.onresize = function () {
-            if (document.fullscreenElement) {
-                setFull(true);
-            } else {
-                setFull(false);
-            }
-        };
-        return function () {
-            window.onresize = null;
-        };
-    }, []);
+    const [full, onFull] = useFullScreen();
+    const [userInfo] = useUserInfo();
 
     const menu = (
         <Menu>
@@ -70,14 +52,6 @@ const Operate: React.FC<IProps> = (props: IProps): React.ReactElement => {
         </Menu>
     );
 
-    const onFull = () => {
-        if (isFullscreenEnabled()) {
-            exitFullScreen();
-        } else {
-            fullScreen();
-        }
-    };
-
     return (
         <div className={style.operate}>
             {props.showFullScreen && (
@@ -87,19 +61,19 @@ const Operate: React.FC<IProps> = (props: IProps): React.ReactElement => {
             )}
             <div
                 className={style.iconButton}
-                onClick={() => history.push("/setting")}
+                onClick={() => history.push('/setting')}
             >
                 <SettingOutlined />
             </div>
             <div className={style.user}>
-                <Dropdown overlay={menu} trigger={["click"]}>
+                <Dropdown overlay={menu} trigger={['click']}>
                     <span onClick={(e) => e.preventDefault()}>
                         <Avatar
-                            style={{ margin: "0 5px" }}
-                            src={user?.userInfo.avatar}
+                            style={{ margin: '0 5px' }}
+                            src={userInfo?.avatar}
                         >
                             A
-                        </Avatar>{" "}
+                        </Avatar>{' '}
                         Admin <CaretDownOutlined />
                     </span>
                 </Dropdown>
@@ -108,4 +82,4 @@ const Operate: React.FC<IProps> = (props: IProps): React.ReactElement => {
     );
 };
 
-export default inject("user")(observer(Operate));
+export default Operate;

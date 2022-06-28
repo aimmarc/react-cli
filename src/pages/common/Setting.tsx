@@ -1,17 +1,10 @@
 import React from 'react';
 import { PageWrapper } from '@/components';
 import { Col, List, Row, Switch } from 'antd';
-import { switchDarkTheme } from '@/utils/theme';
-import { useRecoilState } from 'recoil';
-import { settingState } from '@/recoil/app';
+import { useSettingState } from '@/domain/model/entity/app';
 
 const Setting: React.FC = (): React.ReactElement => {
-    const [setting, setSetting] = useRecoilState(settingState);
-
-    const handleChange = (key: string, value: boolean) => {
-        setting[key] = value;
-        setSetting(setting);
-    };
+    const [setting, setSetting] = useSettingState();
 
     return (
         <PageWrapper bg fit title="设置" goBack>
@@ -23,7 +16,7 @@ const Setting: React.FC = (): React.ReactElement => {
                                 <Switch
                                     defaultChecked={setting.showTabs}
                                     onClick={(value) =>
-                                        handleChange('showTabs', value)
+                                        setSetting('showTabs', value)
                                     }
                                 />
                             }
@@ -35,7 +28,7 @@ const Setting: React.FC = (): React.ReactElement => {
                                 <Switch
                                     defaultChecked={setting.showFullScreen}
                                     onClick={(value) =>
-                                        handleChange('showFullScreen', value)
+                                        setSetting('showFullScreen', value)
                                     }
                                 />
                             }
@@ -47,8 +40,7 @@ const Setting: React.FC = (): React.ReactElement => {
                                 <Switch
                                     defaultChecked={setting.dark}
                                     onClick={(value) => {
-                                        switchDarkTheme(value);
-                                        handleChange('dark', value);
+                                        setSetting('dark', value);
                                     }}
                                 />
                             }

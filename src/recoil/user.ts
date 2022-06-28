@@ -34,12 +34,4 @@ const userInfoState = atom<IUserInfo>({
     default: getDefaultUserInfo(),
 });
 
-/**
- * collapsedState
- */
-const collapsedState = atom<boolean>({
-    key: 'collapsedState',
-    default: false,
-});
-
 export { userInfoState };
