@@ -1,11 +1,10 @@
-import React from "react";
-import { PageWrapper } from "@/components";
-import { Input, Form, DatePicker, Button, Table, Badge, message } from "antd";
-import { CollapseForm } from "@/components";
-import EditModal from "./components/EditModal";
-import { IListPageResponse } from "@/utils/api/httpResponse";
-import { history } from "@/router";
-import { listService } from "@/services";
+import React from 'react';
+import { PageWrapper } from '@/components';
+import { Input, Form, DatePicker, Button, Table, Badge, message } from 'antd';
+import { CollapseForm } from '@/components';
+import EditModal from './components/EditModal';
+import { history } from '@/router';
+import { listTable } from '@/domain/api/list';
 
 const FormItem = Form.Item;
 
@@ -21,20 +20,20 @@ interface ITableListState {
 class TableList extends React.Component<{}, ITableListState> {
     columns = [
         {
-            title: "规则名称",
-            dataIndex: "title",
+            title: '规则名称',
+            dataIndex: 'title',
         },
         {
-            title: "描述",
-            dataIndex: "desc",
+            title: '描述',
+            dataIndex: 'desc',
         },
         {
-            title: "服务调用次数",
-            dataIndex: "temp",
+            title: '服务调用次数',
+            dataIndex: 'temp',
         },
         {
-            title: "状态",
-            dataIndex: "status",
+            title: '状态',
+            dataIndex: 'status',
             render: (text: number) => (
                 <Badge
                     text={this.status[text].label}
@@ -43,18 +42,22 @@ class TableList extends React.Component<{}, ITableListState> {
             ),
         },
         {
-            title: "上次调度时间",
-            dataIndex: "lastDate",
+            title: '上次调度时间',
+            dataIndex: 'lastDate',
         },
         {
-            title: "操作",
+            title: '操作',
             render: () => (
                 <React.Fragment>
                     <Button type="link">配置</Button>
                     <Button
                         type="link"
                         onClick={() =>
-                            history.push(`/list/table/detail?id=${Math.floor(Math.random() * 10000)}`)
+                            history.push(
+                                `/list/table/detail?id=${Math.floor(
+                                    Math.random() * 10000,
+                                )}`,
+                            )
                         }
                     >
                         订阅报警
@@ -76,10 +79,10 @@ class TableList extends React.Component<{}, ITableListState> {
         pageSize: 10,
     };
     status: any = {
-        0: { label: "异常", status: "error" },
-        1: { label: "已上线", status: "success" },
-        2: { label: "运行中", status: "processing" },
-        3: { label: "已关闭", status: "default" },
+        0: { label: '异常', status: 'error' },
+        1: { label: '已上线', status: 'success' },
+        2: { label: '运行中', status: 'processing' },
+        3: { label: '已关闭', status: 'default' },
     };
 
     componentDidMount() {
@@ -93,9 +96,9 @@ class TableList extends React.Component<{}, ITableListState> {
         this.setState({
             loading: true,
         });
-        const data = await listService
-            .table(this.queryParams)
-            .catch(() => this.setState({ loading: false }));
+        const data = await listTable(this.queryParams).catch(() =>
+            this.setState({ loading: false }),
+        );
         this.setState({
             tableData: data,
         });
@@ -146,7 +149,7 @@ class TableList extends React.Component<{}, ITableListState> {
 
     handleOk = () => {
         this.setState({ visible: false });
-        message.success("规则添加成功");
+        message.success('规则添加成功');
         this.queryParams.page = 1;
         this.getTableData();
     };
@@ -178,7 +181,7 @@ class TableList extends React.Component<{}, ITableListState> {
                         <Input />
                     </FormItem>
                     <FormItem label="上次调度时间">
-                        <DatePicker style={{ width: "100%" }} />
+                        <DatePicker style={{ width: '100%' }} />
                     </FormItem>
                 </CollapseForm>
                 <Table

@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { PageWrapper } from '@/components';
 import StatisticCard from './components/StatisticCard';
 import OnlineHot from './components/OnlineHot';
 import { Row, Col } from 'antd';
-import { IListPageResponse } from '@/utils/api/httpResponse';
 import SalePercent from './components/SalePercent';
 import Turnover from './components/Turnover';
-import { dashboardService } from '@/services';
 import useFirstEffect from '@/utils/hooks/useFirstEffect';
+import { useRankList } from '@/domain/service/dashboard';
 
 const Analysis: React.FC = (): React.ReactElement => {
-    const [rankeList, setRankList]: [{ list?: any[]; total?: number }, any] =
-        useState({});
-
     useFirstEffect(() => {
         console.log('indexMounted');
         return () => {
@@ -20,14 +16,7 @@ const Analysis: React.FC = (): React.ReactElement => {
         };
     });
 
-    useEffect(() => {
-        init();
-    }, []);
-
-    const init = async () => {
-        const data: IListPageResponse = await dashboardService.rankList();
-        setRankList(data);
-    };
+    const rankeList = useRankList();
 
     return (
         <PageWrapper custom>
