@@ -24,7 +24,7 @@ module.exports = merge(webpackBaseConfig, {
         port: 3000,
         host: '0.0.0.0',
         progress: true,
-        hot: true,
+        hot: false,
         compress: false,
         proxy: proxy,
         historyApiFallback: {
@@ -39,6 +39,7 @@ module.exports = merge(webpackBaseConfig, {
         stats: 'errors-only',
         before(app) {
             apiMocker(app, path.resolve('./mock/index.js'));
+            console.log('process.env.NODE_ENV', process.env.NODE_ENV);
         },
     },
 
@@ -79,6 +80,6 @@ module.exports = merge(webpackBaseConfig, {
 
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.SourceMapDevToolPlugin({}),
+        // new webpack.SourceMapDevToolPlugin({}),
     ],
 });

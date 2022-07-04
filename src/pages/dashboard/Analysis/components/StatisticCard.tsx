@@ -1,6 +1,6 @@
-import React from "react";
-import { Statistic, Card, Row, Col } from "antd";
-import styles from "./StatisticCard.less";
+import React from 'react';
+import { Statistic, Card, Row, Col } from 'antd';
+import styles from './StatisticCard.less';
 
 const StatisticCard: React.FC = (): React.ReactElement => {
     const span = {
