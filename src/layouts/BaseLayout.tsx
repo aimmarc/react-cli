@@ -4,8 +4,8 @@ import { Header, Sider, TabBar } from '@/components/Layouts';
 import MainLayout from './MainLayout';
 import { settingState, tabState } from '@/recoil/app';
 import { useRecoilValue } from 'recoil';
-import { useLogout } from '@/domain/model/entity/user';
-import { useCollapsed, useMenuData } from '@/domain/model/entity/app';
+import { useLogout } from '@/domain/model/user';
+import { useCollapsed, useMenuData } from '@/domain/model/app';
 
 /**
  * 基础布局

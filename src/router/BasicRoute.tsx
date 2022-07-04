@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, RouteProps, Redirect } from 'react-router-dom';
 import config from '@/common/config/app.config';
-import { useUserInfo } from '@/domain/model/entity/user';
+import { useUserInfo } from '@/domain/model/user';
 
 interface IBasicRouteProps extends RouteProps {}
 

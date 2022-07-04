@@ -1,18 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import style from './index.less';
 import config from '@/common/config/app.config';
-import { inject, observer } from 'mobx-react';
 import { useHistory } from 'react-router';
 import { getMenuName, getMenuRoute } from '@/utils/resolveMenuData';
 import { IconFont } from '@/components';
 import { Tabs } from 'antd';
-import { getBackgroundColor } from '@/utils/theme';
-import { IAppStore } from '@/store/modules/app';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { activeTabState, collapsedState, tabState } from '@/recoil/app';
 import useAtomState from '@/recoil/lib/useAtomState';
 import StorageEnum from '@/utils/constants/storage';
 import useFirstEffect from '@/utils/hooks/useFirstEffect';
+import useTheme from '@/utils/hooks/useTheme';
 const { TabPane } = Tabs;
 
 export type TTabs = {
@@ -25,7 +23,6 @@ export type TTabs = {
 export interface ITabBarProps {
     tabs?: TTabs[];
     active: string;
-    app?: IAppStore;
 }
 
 /**
@@ -43,6 +40,7 @@ const TabBar: React.FC<ITabBarProps> = (): React.ReactElement => {
     const resolveTabsRef: any = useRef();
     const tabDataRef: any = useRef();
     const collapsed = useRecoilValue(collapsedState);
+    const { color } = useTheme('#f0f2f5');
 
     useFirstEffect(() => {
         history.listen((route: any, action) => {
@@ -145,7 +143,7 @@ const TabBar: React.FC<ITabBarProps> = (): React.ReactElement => {
             style={{
                 width: `calc(100% - ${collapsed ? 78 : config.menuWidth}px)`,
                 left: collapsed ? 79 : config.menuWidth,
-                backgroundColor: getBackgroundColor('#f0f2f5'),
+                backgroundColor: color,
             }}
         >
             <Tabs

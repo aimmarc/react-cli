@@ -1,7 +1,7 @@
 import { TTabs } from '@/components/Layouts/TabBar';
 import StorageEnum from '@/utils/constants/storage';
 import { switchDarkTheme } from '@/utils/theme';
-import { atom } from 'recoil';
+import { atom, selector } from 'recoil';
 import appConfig from '@/common/config/app.config';
 
 export interface ISetting {
@@ -68,4 +68,12 @@ const settingState = atom<ISetting>({
     default: getSettingData(),
 });
 
-export { tabState, activeTabState, collapsedState, settingState };
+/**
+ * 页面标题
+ */
+const titleState = atom<string>({
+    key: 'titleState',
+    default: '',
+});
+
+export { tabState, activeTabState, collapsedState, settingState, titleState };

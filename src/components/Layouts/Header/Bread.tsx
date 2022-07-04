@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router";
-import routes, { IRouter } from "@/common/config/router.config";
-import { Breadcrumb } from "antd";
-import config from "@/common/config/app.config";
-import styles from "./Bread.less";
-import { Link } from "react-router-dom";
-import { app } from "@/store";
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
+import routes, { IRouter } from '@/common/config/router.config';
+import { Breadcrumb } from 'antd';
+import config from '@/common/config/app.config';
+import styles from './Bread.less';
+import { Link } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { titleState } from '@/recoil/app';
 
 const Bread: React.FC = (): React.ReactElement => {
     const history = useHistory();
     const [breadList, setBread]: [any[], any] = useState([]);
     const [unmount, setUnmount]: [boolean, any] = useState(false);
+    const [_, setTitle] = useRecoilState(titleState);
 
     useEffect(() => {
         history.listen((res) => {
@@ -26,7 +28,7 @@ const Bread: React.FC = (): React.ReactElement => {
     }, []);
 
     const resolveRoutes = (path: string) => {
-        const breads: any[] = [{ name: "首页", path: "/", component: 1 }];
+        const breads: any[] = [{ name: '首页', path: '/', component: 1 }];
         const loop = (array: IRouter[] | any, parent?: any): any => {
             for (let i = 0; i < array.length; i++) {
                 const row = array[i];
@@ -34,7 +36,7 @@ const Bread: React.FC = (): React.ReactElement => {
                     const ps: any[] = [];
                     const transparent = (p: any) => {
                         if (p?.parent) {
-                            p.parent?.path !== "/" && ps.push(p.parent);
+                            p.parent?.path !== '/' && ps.push(p.parent);
                             transparent(p.parent);
                         }
                     };
@@ -58,7 +60,7 @@ const Bread: React.FC = (): React.ReactElement => {
         setBread(breads);
         const title = breads[breads.length - 1].name;
         document.title = `${config.projectName}-${title}`;
-        app.setTitle(title);
+        setTitle(title);
     };
 
     return (

@@ -6,7 +6,7 @@ import { Row, Col } from 'antd';
 import SalePercent from './components/SalePercent';
 import Turnover from './components/Turnover';
 import useFirstEffect from '@/utils/hooks/useFirstEffect';
-import { useRankList } from '@/domain/model/entity/dashboard';
+import { useRankList } from '@/domain/model/dashboard';
 
 const Analysis: React.FC = (): React.ReactElement => {
     useFirstEffect(() => {

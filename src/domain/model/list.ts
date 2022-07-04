@@ -1,6 +1,6 @@
 import useRequest from '@umijs/use-request';
-import { listTable } from '../../api/list';
-import { IPageListPrams } from '../../interface';
+import { listTable } from '../api/list';
+import { IPageListPrams } from '../interface';
 
 /**
  * 获取分页列表

@@ -11,9 +11,8 @@ import {
 } from '@ant-design/icons';
 import { Menu, Dropdown, Avatar } from 'antd';
 import { useHistory } from 'react-router-dom';
-import { inject, observer } from 'mobx-react';
-import { useFullScreen } from '@/domain/model/entity/app';
-import { useUserInfo } from '@/domain/model/entity/user';
+import { useFullScreen } from '@/domain/model/app';
+import { useUserInfo } from '@/domain/model/user';
 
 interface IProps {
     onLogout: any;

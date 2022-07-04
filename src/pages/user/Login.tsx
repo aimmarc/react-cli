@@ -2,9 +2,8 @@ import React from 'react';
 import { Form, Input, Button, Checkbox } from 'antd';
 import styles from './index.less';
 import Logo from './Logo';
-import { inject, observer } from 'mobx-react';
-import { getBackgroundColor } from '@/utils/theme';
-import { useLogin } from '@/domain/model/entity/user';
+import { useLogin } from '@/domain/model/user';
+import useTheme from '@/utils/hooks/useTheme';
 
 /**
  * 登录
@@ -12,18 +11,17 @@ import { useLogin } from '@/domain/model/entity/user';
  */
 const Login: React.FC = (): React.ReactElement => {
     const { loading, run } = useLogin();
+    const { color } = useTheme('#f0f2f5');
+    const { color: bgColor } = useTheme('#000', '#fff');
 
     return (
-        <div
-            className={styles.login}
-            style={{ backgroundColor: getBackgroundColor('#f0f2f5') }}
-        >
+        <div className={styles.login} style={{ backgroundColor: color }}>
             <div className={styles.loginPanel}>
                 <div className={styles.logoPanel}>
                     <Logo />
                     <p
                         style={{
-                            color: getBackgroundColor('#000', '#fff'),
+                            color: bgColor,
                         }}
                     >
                         不以物喜，不以己悲
@@ -84,4 +82,4 @@ const Login: React.FC = (): React.ReactElement => {
     );
 };
 
-export default inject('user')(observer(Login));
+export default Login;

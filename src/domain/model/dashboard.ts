@@ -1,5 +1,5 @@
 import useRequest from '@umijs/use-request';
-import { rankList } from '../../api/dashboard';
+import { rankList } from '../api/dashboard';
 
 /**
  * 获取排名列表

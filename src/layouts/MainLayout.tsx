@@ -1,8 +1,8 @@
 import config from '@/common/config/app.config';
 import React from 'react';
 import styles from './MainLayout.less';
-import { getBackgroundColor } from '@/utils/theme';
 import { ISetting } from '@/recoil/app';
+import useTheme from '@/utils/hooks/useTheme';
 
 interface IProps {
     collapsed: Boolean;
@@ -12,6 +12,7 @@ interface IProps {
 
 const MainLayout: React.FC<IProps> = (props: IProps): React.ReactElement => {
     const { setting } = props;
+    const { color } = useTheme('#f0f2f5');
 
     return (
         <div
@@ -19,7 +20,7 @@ const MainLayout: React.FC<IProps> = (props: IProps): React.ReactElement => {
             style={{
                 paddingLeft: props.collapsed ? 78 + 8 : config.menuWidth + 8,
                 paddingTop: setting.showTabs ? 96 : 58,
-                backgroundColor: getBackgroundColor('#f0f2f5'),
+                backgroundColor: color,
             }}
         >
             {props.children}

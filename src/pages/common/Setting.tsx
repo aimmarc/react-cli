@@ -1,7 +1,7 @@
 import React from 'react';
 import { PageWrapper } from '@/components';
 import { Col, List, Row, Switch } from 'antd';
-import { useSettingState } from '@/domain/model/entity/app';
+import { useSettingState } from '@/domain/model/app';
 
 const Setting: React.FC = (): React.ReactElement => {
     const [setting, setSetting] = useSettingState();

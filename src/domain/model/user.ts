@@ -7,7 +7,7 @@ import useRequest from '@umijs/use-request';
 import { message } from 'antd';
 import { useHistory } from 'react-router-dom';
 import { SetterOrUpdater } from 'recoil';
-import { login } from '../../api/user';
+import { login } from '../api/user';
 
 /**
  * 登录
