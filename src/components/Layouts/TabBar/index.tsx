@@ -56,20 +56,26 @@ const TabBar: React.FC<ITabBarProps> = (): React.ReactElement => {
                     : tabData;
                 const pathes = copyTabData.map((item: TTabs) => item.route);
                 if (!pathes?.includes(route.pathname)) {
-                    history.goBack();
+                    history.replace(pathes[pathes.length - 1]);
                     return;
                 }
             }
             resolveTabsRef.current
-                ? resolveTabsRef.current(route.pathname, route.search)
-                : resolveTabs(route.pathname, route.search);
+                ? resolveTabsRef.current(
+                      route.pathname,
+                      decodeURIComponent(route.search),
+                  )
+                : resolveTabs(route.pathname, decodeURIComponent(route.search));
         });
         resolveTabsRef.current
             ? resolveTabsRef.current(
                   history.location.pathname,
-                  history.location.search,
+                  decodeURIComponent(history.location.search),
               )
-            : resolveTabs(history.location.pathname, history.location.search);
+            : resolveTabs(
+                  history.location.pathname,
+                  decodeURIComponent(history.location.search),
+              );
         return () => {
             setUnmount(true);
         };
@@ -113,7 +119,7 @@ const TabBar: React.FC<ITabBarProps> = (): React.ReactElement => {
      * @param key
      * @returns
      */
-    const handleChangeTab = (key: any) => {
+    const handleChangeTab = (key: string) => {
         if (activeTab === key) {
             return;
         }
@@ -125,9 +131,10 @@ const TabBar: React.FC<ITabBarProps> = (): React.ReactElement => {
      * remove
      * @param key
      */
-    const handleRemove = (key: any) => {
+    const handleRemove = (key: unknown) => {
         const array = JSON.parse(JSON.stringify(tabData))?.filter(
-            (row: TTabs) => row.route + row.search !== key,
+            (row: TTabs) =>
+                row.route + decodeURIComponent(row.search || '') !== key,
         );
 
         if (activeTab === key) {

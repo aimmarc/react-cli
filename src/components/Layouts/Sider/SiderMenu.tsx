@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Menu } from "antd";
-import { IRouter } from "@/common/config/router.config";
-import { useHistory } from "react-router-dom";
-import IconFont from "../../IconFont";
+import React, { useState, useEffect } from 'react';
+import { Menu } from 'antd';
+import { IRouter } from '@/common/config/router.config';
+import { useHistory } from 'react-router-dom';
+import IconFont from '../../IconFont';
 
 interface IProps {
     menuData: any[];
@@ -115,11 +115,6 @@ const SiderMenu: React.FC<IProps> = (props: IProps): React.ReactElement => {
             .map((item) => item.path)
             .fill((item: any) => item);
 
-        // if (keys.length === 0 && collapsed) {
-        //   resolveOpenKeys(history.location.pathname);
-        //   return;
-        // }
-
         if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
             setKeys(keys);
         } else {
@@ -165,7 +160,7 @@ const SiderMenu: React.FC<IProps> = (props: IProps): React.ReactElement => {
                         >
                             {item.name}
                         </Menu.Item>
-                    ))
+                    )),
             )}
         </Menu>
     );
