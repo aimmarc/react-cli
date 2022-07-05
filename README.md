@@ -1,10 +1,12 @@
 # react-cli
 
 #### 介绍
+
 一个基于ts的react项目模板
 
 #### 软件架构
-从0开始搭建的react模板，支持typescript，支持tabBar；使用ant design组件库，使用mobx状态管理工具。
+
+从0开始搭建的react模板，支持typescript，支持tabBar；使用ant design组件库，使用recoil状态管理工具。
 预览：
 ![预览](https://images.gitee.com/uploads/images/2021/0809/173645_57935d2a_2217046.png "WX20210809-173549.png")
 
@@ -17,6 +19,21 @@
 
 #### 使用说明
 
+├── assets                  #资源文件夹，存放样式文件、图片等</br>
+├── common             #公共文件夹，存放常量、枚举、字典等</br>
+├── components      #公共组件库</br>
+├── domain               #领域</br>
+&emsp;&emsp;├── api               #接口请求</br>
+&emsp;&emsp;├── interface    #领域层interface</br>
+&emsp;&emsp;├── model         #model层</br>
+├── layouts               #布局</br>
+├── pages                  #页面</br>
+├── recoil                  #状态管理</br>
+├── router                 #路由</br>
+├── utils                    #工具类函数库</br>
+├── App.tsx           
+├── index.tsx           #入口文件</br>
+├── typings.d.ts      #全局声明文件</br>
 
 
 #### 参与贡献
@@ -34,4 +51,4 @@
 3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
 4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
 5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](
