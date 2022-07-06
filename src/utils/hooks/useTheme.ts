@@ -6,7 +6,7 @@ import { useRecoilValue } from 'recoil';
  * 主题hook
  * @returns
  */
-function useTheme(baseColor: string, targetColor?: string) {
+const useTheme = (baseColor: string, targetColor?: string) => {
     const setting = useRecoilValue(settingState);
     const { dark } = setting;
     const [color, setColor] = useState(baseColor);
@@ -25,6 +25,6 @@ function useTheme(baseColor: string, targetColor?: string) {
     }
 
     return { change, dark, color };
-}
+};
 
 export default useTheme;
